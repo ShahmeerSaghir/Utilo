@@ -1,0 +1,2584 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Utilo - Premium Free Online Tools</title>
+    <meta
+      id="meta-desc"
+      name="description"
+      content="Fast, Accurate & Easy to Use Online Tools for your daily needs."
+    />
+    <meta
+      name="keywords"
+      content="online tools, calculator, converter, free tools, utilo"
+    />
+    <meta
+      property="og:title"
+      id="og-title"
+      content="Utilo - Premium Free Online Tools"
+    />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2314b8a6'/%3E%3Ctext x='50' y='72' font-family='sans-serif' font-size='64' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3EU%3C/text%3E%3C/svg%3E"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              teal: {
+                50: "#f0fdfa",
+                100: "#ccfbf1",
+                200: "#99f6e4",
+                300: "#5eead4",
+                400: "#2dd4bf",
+                500: "#14b8a6",
+                600: "#0d9488",
+                700: "#0f766e",
+                800: "#115e59",
+                900: "#134e4a",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .view {
+        display: none;
+      }
+      .view.active {
+        display: block;
+        animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .tool-section {
+        display: none;
+      }
+      .tool-section.active {
+        display: block;
+        animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .glass-input {
+        width: 100%;
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 1rem;
+        padding: 0.875rem 1.25rem;
+        font-weight: 600;
+        color: #1e293b;
+        outline: none;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .glass-input:focus {
+        border-color: #2dd4bf;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.15);
+      }
+
+      .label-text {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #64748b;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .calc-btn {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+      }
+      .calc-btn:active {
+        transform: scale(0.92);
+      }
+
+      .result-box {
+        background: linear-gradient(135deg, #14b8a6, #0d9488);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.3);
+      }
+
+      details {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.3s ease;
+      }
+      details[open] {
+        border-color: #99f6e4;
+        box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.1);
+      }
+      summary {
+        font-weight: 700;
+        color: #1e293b;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        outline: none;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "+";
+        font-size: 1.5rem;
+        color: #14b8a6;
+        font-weight: 400;
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+      details[open] summary::after {
+        transform: rotate(45deg);
+      }
+      details p,
+      details ul {
+        color: #475569;
+        font-size: 0.95rem;
+        margin-top: 1rem;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+      details ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .clock-suggestion {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        border-bottom: 1px solid #f1f5f9;
+        transition: background 0.1s;
+      }
+      .clock-suggestion:hover {
+        background: #f8fafc;
+        color: #0d9488;
+      }
+      .clock-suggestion:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body
+    class="text-slate-800 flex flex-col antialiased bg-slate-50 min-h-screen"
+  >
+    <!-- Header -->
+    <header
+      class="bg-white/80 backdrop-blur-xl shadow-sm sticky top-0 z-50 border-b border-slate-200/60 h-[72px] flex items-center"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 w-full flex items-center justify-between gap-4"
+      >
+        <a
+          href="#"
+          onclick="showHome(event)"
+          class="text-2xl font-extrabold text-slate-900 flex items-center gap-2.5 group tracking-tight shrink-0 outline-none rounded-xl focus-visible:ring-2 focus-visible:ring-teal-400"
+        >
+          <div
+            class="flex items-center justify-center w-10 h-10 bg-[#14b8a6] rounded-lg shadow-sm text-white"
+          >
+            <span class="text-2xl font-bold font-sans tracking-tighter">U</span>
+          </div>
+          Utilo
+        </a>
+
+        <div
+          id="search-wrapper"
+          class="flex-1 max-w-lg transition-all duration-300 transform scale-100 opacity-100 relative"
+        >
+          <div class="relative">
+            <input
+              type="text"
+              id="global-search"
+              placeholder="Search for a tool..."
+              class="w-full bg-slate-100/80 border border-slate-200/60 py-2.5 pl-11 pr-4 rounded-xl text-sm font-semibold outline-none focus:bg-white focus:border-teal-400 focus:ring-4 focus:ring-teal-400/10 transition-all hover:border-slate-300"
+              autocomplete="off"
+              oninput="doSearch(this.value)"
+              onfocus="doSearch(this.value)"
+            />
+            <svg
+              class="w-5 h-5 text-slate-400 absolute left-3.5 top-[11px]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </div>
+          <div
+            id="search-suggestions-dropdown"
+            class="absolute top-[100%] left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-slate-200 max-h-80 overflow-y-auto hidden z-50 font-medium text-slate-700 divide-y divide-slate-100/50"
+          >
+            <!-- Javascript fills this -->
+          </div>
+        </div>
+
+        <button
+          id="back-btn"
+          onclick="showHome(event)"
+          class="hidden text-sm font-bold text-slate-700 bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-200 hover:text-teal-700 hover:bg-teal-50 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all shrink-0 active:scale-95"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+          <span class="hidden sm:inline">Back to Tools</span
+          ><span class="sm:hidden">Back</span>
+        </button>
+      </div>
+    </header>
+
+    <main
+      class="flex-grow flex flex-col relative w-full pt-8 sm:pt-12 pb-20 min-h-[calc(100vh-160px)]"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 w-full h-full flex flex-col lg:flex-row gap-8"
+      >
+        <!-- Permanent Sidebar (Desktop only) -->
+        <aside class="w-full lg:w-64 flex-shrink-0 hidden lg:block">
+          <div
+            class="bg-white rounded-[1.5rem] shadow-sm border border-slate-200/60 p-4 sticky top-28 max-h-[75vh] overflow-y-auto no-scrollbar"
+          >
+            <h3
+              class="text-xs font-black text-slate-400 uppercase tracking-widest pl-4 mb-4 mt-2"
+            >
+              All Tools
+            </h3>
+            <nav id="sidebar-nav" class="flex flex-col gap-1"></nav>
+          </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 w-full min-w-0">
+          <!-- Home View -->
+          <div id="home-view" class="view active w-full">
+            <div
+              class="mb-10 pl-1 text-center sm:text-left animate-in fade-in slide-in-from-bottom-4 duration-500"
+            >
+              <h1
+                class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-3"
+              >
+                Premium Online Tools
+              </h1>
+              <p class="text-slate-500 text-lg font-medium">
+                Fast, reliable, completely free, and functioning securely in
+                your browser.
+              </p>
+            </div>
+            <div
+              id="tools-grid"
+              class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+            ></div>
+          </div>
+
+          <!-- Tool View -->
+          <div id="tool-view" class="view w-full">
+            <div
+              id="tools-container"
+              class="bg-white rounded-[2rem] shadow-sm border border-slate-200/60 overflow-hidden relative"
+            >
+              <!-- 1. World Clock -->
+              <div id="tool-world-clock" class="tool-section p-6 sm:p-12">
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  World Clock
+                </h1>
+                <div class="relative max-w-md mb-8">
+                  <div class="flex flex-col sm:flex-row gap-3 relative z-20">
+                    <input
+                      type="text"
+                      id="clock-city-search"
+                      placeholder="Search city (e.g., Karachi, London)"
+                      class="glass-input flex-1 !py-3 font-semibold"
+                      oninput="handleCitySearch(this.value)"
+                      onfocus="handleCitySearch(this.value)"
+                      autocomplete="off"
+                    />
+                    <button
+                      onclick="addSelectedCity()"
+                      class="calc-btn px-6 py-3 bg-teal-50 text-teal-700 font-bold rounded-xl border border-teal-200 hover:bg-teal-500 hover:text-white shadow-sm ring-1 ring-transparent hover:ring-teal-200 shrink-0"
+                    >
+                      Add City
+                    </button>
+                  </div>
+                  <div
+                    id="clock-suggestions"
+                    class="absolute top-[100%] left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-slate-200 max-h-60 overflow-y-auto hidden z-30 font-medium text-slate-700"
+                  >
+                    <!-- Suggestions filled by JS -->
+                  </div>
+                </div>
+                <div
+                  id="clock-grid"
+                  class="grid grid-cols-1 sm:grid-cols-2 gap-5"
+                >
+                  <!-- Dynamic Clocks -->
+                </div>
+              </div>
+
+              <!-- 2. Currency Converter -->
+              <div
+                id="tool-currency-converter"
+                class="tool-section p-6 sm:p-12"
+              >
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  Currency Converter
+                </h1>
+                <div class="space-y-6 max-w-xl">
+                  <div>
+                    <label class="label-text">Amount</label
+                    ><input
+                      type="number"
+                      id="curr-amount"
+                      value="1"
+                      class="glass-input text-xl font-bold"
+                      oninput="calcCurr()"
+                    />
+                  </div>
+                  <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <div class="w-full">
+                      <label class="label-text">From</label>
+                      <div class="relative dropdown-container">
+                        <div
+                          onclick="toggleDropdown('from')"
+                          class="glass-input font-bold text-lg cursor-pointer flex justify-between items-center"
+                        >
+                          <span id="curr-from-text">USD - US Dollar</span>
+                          <svg
+                            class="w-5 h-5 text-slate-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            ></path>
+                          </svg>
+                        </div>
+                        <div
+                          id="curr-from-dropdown"
+                          class="absolute z-10 w-full mt-2 bg-white rounded-xl shadow-xl border border-slate-200 hidden transform opacity-100 scale-100 transition-all origin-top max-h-[300px] flex flex-col"
+                        >
+                          <div class="p-2 border-b border-slate-100">
+                            <input
+                              type="text"
+                              id="curr-from-search"
+                              placeholder="Search currency..."
+                              class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-teal-400"
+                              oninput="filterCurr('from', this.value)"
+                            />
+                          </div>
+                          <div
+                            id="curr-from-list"
+                            class="overflow-y-auto no-scrollbar flex-1 py-1"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      onclick="swapCurr()"
+                      class="calc-btn mt-0 sm:mt-6 p-4 rounded-2xl bg-teal-50 text-teal-600 border border-teal-200 hover:bg-teal-500 hover:text-white shadow-sm flex-shrink-0 group"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        class="transition-transform group-hover:rotate-180"
+                      >
+                        <path d="M16 3h5v5M4 21h5v-5M21 3l-7 7M3 21l7-7" />
+                      </svg>
+                    </button>
+                    <div class="w-full">
+                      <label class="label-text">To</label>
+                      <div class="relative dropdown-container">
+                        <div
+                          onclick="toggleDropdown('to')"
+                          class="glass-input font-bold text-lg cursor-pointer flex justify-between items-center"
+                        >
+                          <span id="curr-to-text">INR - Indian Rupee</span>
+                          <svg
+                            class="w-5 h-5 text-slate-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            ></path>
+                          </svg>
+                        </div>
+                        <div
+                          id="curr-to-dropdown"
+                          class="absolute z-10 w-full mt-2 bg-white rounded-xl shadow-xl border border-slate-200 hidden transform opacity-100 scale-100 transition-all origin-top max-h-[300px] flex flex-col"
+                        >
+                          <div class="p-2 border-b border-slate-100">
+                            <input
+                              type="text"
+                              id="curr-to-search"
+                              placeholder="Search currency..."
+                              class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-teal-400"
+                              oninput="filterCurr('to', this.value)"
+                            />
+                          </div>
+                          <div
+                            id="curr-to-list"
+                            class="overflow-y-auto no-scrollbar flex-1 py-1"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="result-box mt-6 !items-start !text-left !px-8 !py-6"
+                  >
+                    <p
+                      class="text-sm font-bold text-teal-100 uppercase tracking-widest mb-1"
+                    >
+                      Converted Amount
+                    </p>
+                    <p
+                      id="curr-res"
+                      class="text-4xl sm:text-5xl font-black tracking-tight font-mono w-full break-all"
+                    >
+                      ...
+                    </p>
+                    <p
+                      id="curr-info"
+                      class="text-sm font-medium text-teal-100 mt-3 pt-3 border-t border-teal-400/30 w-full"
+                    >
+                      Loading rates...
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Unit Converter -->
+              <div id="tool-unit-converter" class="tool-section p-6 sm:p-12">
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  Unit Converter
+                </h1>
+                <div class="space-y-6 max-w-xl">
+                  <div>
+                    <label class="label-text">Category</label>
+                    <select
+                      id="unit-type"
+                      class="glass-input mb-2 text-lg font-bold cursor-pointer"
+                      onchange="updateUnits()"
+                    >
+                      <option value="length">📏 Length</option>
+                      <option value="weight">⚖️ Weight</option>
+                      <option value="temperature">🌡️ Temperature</option>
+                      <option value="area">🟩 Area</option>
+                      <option value="volume">📦 Volume</option>
+                      <option value="speed">🚀 Speed</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="label-text">Value to Convert</label
+                    ><input
+                      type="number"
+                      id="unit-val"
+                      value="1"
+                      class="glass-input font-bold text-xl"
+                      oninput="calcUnit()"
+                    />
+                  </div>
+                  <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="w-full">
+                      <label class="label-text">From</label
+                      ><select
+                        id="unit-from"
+                        class="glass-input font-bold uppercase transition-all cursor-pointer text-sm"
+                        onchange="calcUnit()"
+                      ></select>
+                    </div>
+                    <div class="w-full">
+                      <label class="label-text">To</label
+                      ><select
+                        id="unit-to"
+                        class="glass-input font-bold uppercase transition-all cursor-pointer text-sm"
+                        onchange="calcUnit()"
+                      ></select>
+                    </div>
+                  </div>
+                  <div class="result-box mt-6">
+                    <p
+                      class="text-sm font-bold text-teal-100 uppercase tracking-widest mb-2"
+                    >
+                      Result
+                    </p>
+                    <p
+                      id="unit-res"
+                      class="text-4xl sm:text-5xl font-black font-mono tracking-tight text-white mt-1 break-all text-center"
+                    >
+                      0
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Scientific Calc (Light Premium Theme) -->
+              <div
+                id="tool-scientific-calculator"
+                class="tool-section px-2 py-3 sm:p-8 hidden"
+              >
+                <div class="max-w-[330px] mx-auto">
+                  <h1
+                    class="text-[1.2rem] sm:text-2xl font-extrabold tracking-tight mb-2.5 sm:mb-5 text-slate-900 text-center drop-shadow-sm"
+                  >
+                    Scientific Calculator
+                  </h1>
+                  <div
+                    class="bg-slate-50/90 p-2 sm:p-3 rounded-[1.25rem] border border-slate-200 shadow-2xl shadow-slate-200/50"
+                  >
+                    <!-- Display -->
+                    <div
+                      class="bg-white border border-slate-200 rounded-xl p-2.5 mb-2 text-right shadow-inner flex flex-col justify-end min-h-[4rem]"
+                    >
+                      <div
+                        id="calc-exp"
+                        class="text-slate-400 text-[11px] font-bold tracking-wider font-mono h-4 mb-0.5 overflow-hidden w-full break-all"
+                      ></div>
+                      <div
+                        id="calc-res"
+                        class="text-3xl font-black tracking-tight font-mono text-slate-800 overflow-hidden w-full break-all leading-none pb-0.5"
+                      >
+                        0
+                      </div>
+                    </div>
+                    <!-- Keypad -->
+                    <div class="grid grid-cols-4 gap-1.5 touch-manipulation">
+                      <!-- Functions Row 1 -->
+                      <button
+                        onclick="ca('sin(')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[12px] active:scale-95 border border-transparent"
+                      >
+                        sin
+                      </button>
+                      <button
+                        onclick="ca('cos(')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[12px] active:scale-95 border border-transparent"
+                      >
+                        cos
+                      </button>
+                      <button
+                        onclick="ca('tan(')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[12px] active:scale-95 border border-transparent"
+                      >
+                        tan
+                      </button>
+                      <button
+                        onclick="ce()"
+                        class="calc-btn h-8 bg-rose-50 hover:bg-rose-500 hover:text-white text-rose-600 border border-rose-200 rounded-lg shadow-sm font-black transition-all text-[12px] active:scale-95"
+                      >
+                        C
+                      </button>
+
+                      <!-- Functions Row 2 -->
+                      <button
+                        onclick="ca('log(')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[12px] active:scale-95 border border-transparent"
+                      >
+                        log
+                      </button>
+                      <button
+                        onclick="ca('ln(')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[12px] active:scale-95 border border-transparent"
+                      >
+                        ln
+                      </button>
+                      <button
+                        onclick="ca('(')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[13px] active:scale-95 border border-transparent"
+                      >
+                        (
+                      </button>
+                      <button
+                        onclick="ca(')')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[13px] active:scale-95 border border-transparent"
+                      >
+                        )
+                      </button>
+
+                      <!-- Functions Row 3 -->
+                      <button
+                        onclick="ca('sqrt(')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[13px] active:scale-95 border border-transparent"
+                      >
+                        √
+                      </button>
+                      <button
+                        onclick="ca('^')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition-all text-[13px] active:scale-95 border border-transparent"
+                      >
+                        ^
+                      </button>
+                      <button
+                        onclick="ca('π')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-serif italic font-bold transition-all text-[13px] active:scale-95 border border-transparent"
+                      >
+                        π
+                      </button>
+                      <button
+                        onclick="ca('e')"
+                        class="calc-btn h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-serif italic font-bold transition-all text-[13px] active:scale-95 border border-transparent"
+                      >
+                        e
+                      </button>
+
+                      <!-- Numbers Row 1 -->
+                      <button
+                        onclick="ca('7')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        7
+                      </button>
+                      <button
+                        onclick="ca('8')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        8
+                      </button>
+                      <button
+                        onclick="ca('9')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        9
+                      </button>
+                      <button
+                        onclick="ca('/')"
+                        class="calc-btn h-10 bg-teal-50 hover:bg-teal-500 hover:text-white text-teal-700 border border-teal-200 rounded-lg transition-all font-bold text-xl active:scale-95"
+                      >
+                        ÷
+                      </button>
+
+                      <!-- Numbers Row 2 -->
+                      <button
+                        onclick="ca('4')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        4
+                      </button>
+                      <button
+                        onclick="ca('5')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        5
+                      </button>
+                      <button
+                        onclick="ca('6')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        6
+                      </button>
+                      <button
+                        onclick="ca('*')"
+                        class="calc-btn h-10 bg-teal-50 hover:bg-teal-500 hover:text-white text-teal-700 border border-teal-200 rounded-lg transition-all font-bold text-xl active:scale-95"
+                      >
+                        ×
+                      </button>
+
+                      <!-- Numbers Row 3 -->
+                      <button
+                        onclick="ca('1')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        1
+                      </button>
+                      <button
+                        onclick="ca('2')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        2
+                      </button>
+                      <button
+                        onclick="ca('3')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        3
+                      </button>
+                      <button
+                        onclick="ca('-')"
+                        class="calc-btn h-10 bg-teal-50 hover:bg-teal-500 hover:text-white text-teal-700 border border-teal-200 rounded-lg transition-all font-bold text-xl active:scale-95"
+                      >
+                        −
+                      </button>
+
+                      <!-- Numbers Row 4 -->
+                      <button
+                        onclick="ca('0')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        0
+                      </button>
+                      <button
+                        onclick="ca('.')"
+                        class="calc-btn h-10 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm rounded-lg transition-all font-bold text-lg active:scale-95"
+                      >
+                        .
+                      </button>
+                      <button
+                        onclick="cDel()"
+                        class="calc-btn h-10 bg-amber-50 hover:bg-amber-500 hover:text-white text-amber-600 border border-amber-200 rounded-lg shadow-sm font-bold text-[12px] transition-all active:scale-95"
+                      >
+                        DEL
+                      </button>
+                      <button
+                        onclick="ca('+')"
+                        class="calc-btn h-10 bg-teal-50 hover:bg-teal-500 hover:text-white text-teal-700 border border-teal-200 rounded-lg transition-all font-bold text-xl active:scale-95"
+                      >
+                        +
+                      </button>
+
+                      <!-- Equal Row -->
+                      <button
+                        onclick="cEq()"
+                        class="calc-btn col-span-4 h-10 bg-[#14b8a6] hover:bg-teal-600 text-white shadow-md shadow-teal-500/30 rounded-lg font-black text-2xl transition-all active:scale-95 mt-0.5"
+                      >
+                        =
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. EMI Calculator -->
+              <div id="tool-emi-calculator" class="tool-section p-6 sm:p-12">
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  EMI Calculator
+                </h1>
+                <div class="space-y-6 max-w-lg">
+                  <div>
+                    <label class="label-text">Loan Amount</label
+                    ><input
+                      type="number"
+                      id="emi-p"
+                      value="10000"
+                      class="glass-input text-xl font-bold"
+                      oninput="calcEmi()"
+                    />
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="label-text">Interest Rate (%)</label
+                      ><input
+                        type="number"
+                        id="emi-r"
+                        value="10"
+                        step="0.1"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcEmi()"
+                      />
+                    </div>
+                    <div>
+                      <label class="label-text">Tenure (Years)</label
+                      ><input
+                        type="number"
+                        id="emi-n"
+                        value="5"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcEmi()"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="result-box mt-6 !text-left !px-8 border border-teal-200 bg-teal-50 !bg-none text-teal-900"
+                  >
+                    <p
+                      class="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2"
+                    >
+                      Monthly EMI
+                    </p>
+                    <p
+                      id="emi-res"
+                      class="text-5xl font-black font-mono break-all text-teal-800"
+                    >
+                      ---
+                    </p>
+                    <div
+                      class="mt-6 pt-5 border-t border-teal-200 w-full flex justify-between items-center"
+                    >
+                      <span class="text-sm font-extrabold text-teal-600"
+                        >Total Interest Payable</span
+                      >
+                      <span
+                        id="emi-total"
+                        class="text-lg font-black font-mono text-teal-800 break-all"
+                        >---</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 6. Tip Calculator -->
+              <div id="tool-tip-calculator" class="tool-section p-6 sm:p-12">
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  Tip Calculator
+                </h1>
+                <div class="space-y-6 max-w-lg">
+                  <div>
+                    <label class="label-text">Bill Amount</label
+                    ><input
+                      type="number"
+                      id="tip-amt"
+                      value="50"
+                      class="glass-input text-xl font-bold"
+                      oninput="calcTip()"
+                    />
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="label-text">Tip Percentage (%)</label
+                      ><input
+                        type="number"
+                        id="tip-perc"
+                        value="15"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcTip()"
+                      />
+                    </div>
+                    <div>
+                      <label class="label-text">Number of People</label
+                      ><input
+                        type="number"
+                        id="tip-ppl"
+                        value="2"
+                        min="1"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcTip()"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="result-box mt-6 !text-left !px-8 border border-teal-200 bg-teal-50 !bg-none text-teal-900"
+                  >
+                    <p
+                      class="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2"
+                    >
+                      Per Person
+                    </p>
+                    <p
+                      id="tip-res"
+                      class="text-5xl font-black font-mono break-all text-teal-800"
+                    >
+                      ---
+                    </p>
+                    <div
+                      class="mt-6 pt-5 border-t border-teal-200 w-full flex justify-between items-center"
+                    >
+                      <span class="text-sm font-extrabold text-teal-600"
+                        >Total Bill (with Tip)</span
+                      >
+                      <span
+                        id="tip-tot"
+                        class="text-lg font-black font-mono text-teal-800 break-all"
+                        >---</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 7. Percentage Calculator -->
+              <div
+                id="tool-percentage-calculator"
+                class="tool-section p-6 sm:p-12"
+              >
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  Percentage Calculator
+                </h1>
+                <div class="space-y-8 max-w-2xl">
+                  <div
+                    class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:border-teal-300 transition-all"
+                  >
+                    <div
+                      class="absolute left-0 top-0 bottom-0 w-1.5 bg-teal-400"
+                    ></div>
+                    <div class="flex flex-wrap items-center gap-4">
+                      <span class="font-extrabold text-slate-500 text-lg"
+                        >What is</span
+                      >
+                      <input
+                        type="number"
+                        id="p1"
+                        value="20"
+                        class="glass-input !w-28 px-2 text-center text-xl"
+                        oninput="calcPerc()"
+                      />
+                      <span class="font-extrabold text-slate-500 text-lg"
+                        >% of</span
+                      >
+                      <input
+                        type="number"
+                        id="p2"
+                        value="150"
+                        class="glass-input !w-36 px-2 text-center text-xl"
+                        oninput="calcPerc()"
+                      />
+                    </div>
+                    <div
+                      class="mt-6 flex items-center justify-between border-t border-slate-100 pt-5"
+                    >
+                      <span
+                        class="text-sm font-bold text-slate-400 uppercase tracking-wider"
+                        >Result</span
+                      >
+                      <span
+                        id="p-res1"
+                        class="text-4xl font-black text-teal-600 font-mono break-all"
+                        >30</span
+                      >
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:border-blue-300 transition-all"
+                  >
+                    <div
+                      class="absolute left-0 top-0 bottom-0 w-1.5 bg-blue-400"
+                    ></div>
+                    <div class="flex flex-wrap items-center gap-4">
+                      <input
+                        type="number"
+                        id="p3"
+                        value="50"
+                        class="glass-input !w-28 px-2 text-center text-xl"
+                        oninput="calcPerc()"
+                      />
+                      <span class="font-extrabold text-slate-500 text-lg"
+                        >is what % of</span
+                      >
+                      <input
+                        type="number"
+                        id="p4"
+                        value="200"
+                        class="glass-input !w-36 px-2 text-center text-xl"
+                        oninput="calcPerc()"
+                      />
+                    </div>
+                    <div
+                      class="mt-6 flex items-center justify-between border-t border-slate-100 pt-5"
+                    >
+                      <span
+                        class="text-sm font-bold text-slate-400 uppercase tracking-wider"
+                        >Result</span
+                      >
+                      <span
+                        id="p-res2"
+                        class="text-4xl font-black text-blue-600 font-mono break-all"
+                        >25%</span
+                      >
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:border-purple-300 transition-all"
+                  >
+                    <div
+                      class="absolute left-0 top-0 bottom-0 w-1.5 bg-purple-400"
+                    ></div>
+                    <div class="flex flex-wrap items-center gap-4">
+                      <span class="font-extrabold text-slate-500 text-lg"
+                        >Change from</span
+                      >
+                      <input
+                        type="number"
+                        id="p5"
+                        value="100"
+                        class="glass-input !w-32 px-2 text-center text-xl"
+                        oninput="calcPerc()"
+                      />
+                      <span class="font-extrabold text-slate-500 text-lg"
+                        >to</span
+                      >
+                      <input
+                        type="number"
+                        id="p6"
+                        value="120"
+                        class="glass-input !w-32 px-2 text-center text-xl"
+                        oninput="calcPerc()"
+                      />
+                    </div>
+                    <div
+                      class="mt-6 flex items-center justify-between border-t border-slate-100 pt-5"
+                    >
+                      <span
+                        class="text-sm font-bold text-slate-400 uppercase tracking-wider"
+                        >Result</span
+                      >
+                      <span
+                        id="p-res3"
+                        class="text-4xl font-black text-purple-600 font-mono break-all"
+                        >+20%</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 8. Age Calculator -->
+              <div id="tool-age-calculator" class="tool-section p-6 sm:p-12">
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  Age Calculator
+                </h1>
+                <div class="space-y-6 max-w-lg mx-auto">
+                  <div>
+                    <label class="label-text text-center text-sm"
+                      >Select Your Date of Birth</label
+                    ><input
+                      type="date"
+                      id="age-dob"
+                      class="glass-input font-mono !py-4 !text-2xl text-center cursor-pointer hover:border-teal-300"
+                      onchange="calcAge()"
+                    />
+                  </div>
+                  <div class="result-box mt-6 shadow-lg shadow-teal-500/20">
+                    <div class="flex gap-4 sm:gap-8 justify-center w-full">
+                      <div class="text-center flex-1">
+                        <span
+                          id="age-y"
+                          class="text-5xl sm:text-6xl font-black font-mono"
+                          >0</span
+                        >
+                        <p
+                          class="text-xs uppercase tracking-widest font-bold text-teal-100 mt-2"
+                        >
+                          Years
+                        </p>
+                      </div>
+                      <div class="w-0.5 bg-teal-400/30 rounded-full"></div>
+                      <div class="text-center flex-1">
+                        <span
+                          id="age-m"
+                          class="text-5xl sm:text-6xl font-black font-mono"
+                          >0</span
+                        >
+                        <p
+                          class="text-xs uppercase tracking-widest font-bold text-teal-100 mt-2"
+                        >
+                          Months
+                        </p>
+                      </div>
+                      <div class="w-0.5 bg-teal-400/30 rounded-full"></div>
+                      <div class="text-center flex-1">
+                        <span
+                          id="age-d"
+                          class="text-5xl sm:text-6xl font-black font-mono"
+                          >0</span
+                        >
+                        <p
+                          class="text-xs uppercase tracking-widest font-bold text-teal-100 mt-2"
+                        >
+                          Days
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="age-msg"
+                    class="text-center text-sm font-bold text-rose-500 hidden pt-2 py-2 bg-rose-50 rounded-xl border border-rose-200"
+                  >
+                    Date of birth cannot be in the future!
+                  </div>
+                </div>
+              </div>
+
+              <!-- 9. BMI Calculator -->
+              <div id="tool-bmi-calculator" class="tool-section p-6 sm:p-12">
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  BMI Calculator
+                </h1>
+                <div class="space-y-6 max-w-sm mx-auto">
+                  <div class="flex bg-slate-100 p-1.5 rounded-xl">
+                    <label class="flex-1 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="bmi-sys"
+                        value="metric"
+                        checked
+                        class="hidden peer"
+                        onchange="updBMI()"
+                      />
+                      <div
+                        class="text-center py-2.5 rounded-lg font-bold text-slate-500 peer-checked:bg-white peer-checked:text-teal-700 peer-checked:shadow-sm transition-all text-sm"
+                      >
+                        Metric
+                      </div>
+                    </label>
+                    <label class="flex-1 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="bmi-sys"
+                        value="imperial"
+                        class="hidden peer"
+                        onchange="updBMI()"
+                      />
+                      <div
+                        class="text-center py-2.5 rounded-lg font-bold text-slate-500 peer-checked:bg-white peer-checked:text-teal-700 peer-checked:shadow-sm transition-all text-sm"
+                      >
+                        Imperial
+                      </div>
+                    </label>
+                  </div>
+                  <div id="bmi-met" class="space-y-5">
+                    <div>
+                      <label class="label-text">Weight (kg)</label
+                      ><input
+                        type="number"
+                        id="bmi-kg"
+                        value="70"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcBmi()"
+                      />
+                    </div>
+                    <div>
+                      <label class="label-text">Height (cm)</label
+                      ><input
+                        type="number"
+                        id="bmi-cm"
+                        value="175"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcBmi()"
+                      />
+                    </div>
+                  </div>
+                  <div id="bmi-imp" class="hidden space-y-5">
+                    <div>
+                      <label class="label-text">Weight (lbs)</label
+                      ><input
+                        type="number"
+                        id="bmi-lb"
+                        value="150"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcBmi()"
+                      />
+                    </div>
+                    <div>
+                      <label class="label-text">Height (inches)</label
+                      ><input
+                        type="number"
+                        id="bmi-in"
+                        value="68"
+                        class="glass-input text-xl font-bold"
+                        oninput="calcBmi()"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="result-box mt-6 !py-8 !bg-none border border-teal-200 bg-teal-50 shadow-none text-teal-900"
+                  >
+                    <p
+                      class="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2"
+                    >
+                      Your BMI Is
+                    </p>
+                    <p
+                      id="bmi-res"
+                      class="text-6xl font-black font-mono text-teal-800"
+                    >
+                      22.9
+                    </p>
+                    <p
+                      id="bmi-cat"
+                      class="text-sm font-black bg-teal-600 text-white px-6 py-2 rounded-full mt-5 uppercase tracking-widest shadow-md"
+                    >
+                      Normal Weight
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 10. Calorie Calculator -->
+              <div
+                id="tool-daily-calorie-calculator"
+                class="tool-section p-6 sm:p-12"
+              >
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  Daily Calorie Calc
+                </h1>
+                <div class="space-y-6 max-w-md mx-auto">
+                  <div>
+                    <label class="label-text">Gender</label
+                    ><select
+                      id="cal-g"
+                      class="glass-input text-lg font-bold cursor-pointer"
+                      onchange="calcCal()"
+                    >
+                      <option value="m">Male</option>
+                      <option value="f">Female</option>
+                    </select>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="label-text">Age</label
+                      ><input
+                        type="number"
+                        id="cal-a"
+                        value="25"
+                        class="glass-input text-lg font-bold"
+                        oninput="calcCal()"
+                      />
+                    </div>
+                    <div>
+                      <label class="label-text">Weight (kg)</label
+                      ><input
+                        type="number"
+                        id="cal-w"
+                        value="70"
+                        class="glass-input text-lg font-bold"
+                        oninput="calcCal()"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="label-text">Height (cm)</label
+                    ><input
+                      type="number"
+                      id="cal-h"
+                      value="175"
+                      class="glass-input text-lg font-bold"
+                      oninput="calcCal()"
+                    />
+                  </div>
+                  <div>
+                    <label class="label-text">Activity Level</label
+                    ><select
+                      id="cal-act"
+                      class="glass-input text-base font-bold cursor-pointer"
+                      onchange="calcCal()"
+                    >
+                      <option value="1.2">
+                        Sedentary (Little/no exercise)
+                      </option>
+                      <option value="1.375">
+                        Lightly active (1-3 days/wk)
+                      </option>
+                      <option value="1.55">
+                        Moderately active (3-5 days/wk)
+                      </option>
+                      <option value="1.725">Very active (6-7 days/wk)</option>
+                      <option value="1.9">Extra active (Physical job)</option>
+                    </select>
+                  </div>
+                  <div
+                    class="result-box mt-8 border border-teal-200 bg-teal-50 !text-teal-900 !py-8 !bg-none shadow-none"
+                  >
+                    <p
+                      class="text-xs font-bold text-teal-600 uppercase tracking-widest mb-2"
+                    >
+                      Calories To Maintain Weight
+                    </p>
+                    <div class="flex items-baseline gap-2">
+                      <p
+                        id="cal-res"
+                        class="text-6xl font-black font-mono text-teal-800"
+                      >
+                        ---
+                      </p>
+                      <p
+                        class="text-base font-extrabold text-teal-600 uppercase"
+                      >
+                        kcal
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 11. Password Generator -->
+              <div
+                id="tool-password-generator"
+                class="tool-section p-6 sm:p-12"
+              >
+                <h1
+                  class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-8"
+                >
+                  Password Gen
+                </h1>
+                <div class="space-y-8 max-w-lg mx-auto">
+                  <div class="relative group">
+                    <div
+                      id="pass-res"
+                      class="glass-input text-center text-2xl sm:text-3xl font-mono tracking-widest py-8 break-all shadow-sm border-teal-200 bg-teal-50 text-teal-900"
+                    ></div>
+                    <button
+                      onclick="copyPass()"
+                      id="copy-btn"
+                      class="absolute right-3 top-3 bottom-3 px-6 bg-teal-500 hover:bg-teal-600 text-white rounded-xl text-sm font-bold uppercase tracking-wider transition-colors shadow-sm cursor-pointer active:scale-95"
+                    >
+                      Copy
+                    </button>
+                  </div>
+                  <div
+                    class="bg-white p-6 rounded-[1.25rem] border border-slate-200 shadow-sm"
+                  >
+                    <label
+                      class="flex justify-between items-center label-text mb-5"
+                      ><span class="text-xs font-black">PASSWORD LENGTH</span>
+                      <span
+                        id="pass-len-lbl"
+                        class="font-mono text-lg text-teal-600 font-black bg-teal-50 px-3 py-1 rounded-lg border border-teal-100"
+                        >16</span
+                      ></label
+                    >
+                    <input
+                      type="range"
+                      id="pass-len"
+                      min="6"
+                      max="64"
+                      value="16"
+                      class="w-full accent-teal-500 cursor-pointer h-2 bg-slate-200 rounded-lg appearance-none"
+                      oninput="
+                        document.getElementById('pass-len-lbl').innerText =
+                          this.value;
+                        genPass();
+                      "
+                    />
+                  </div>
+                  <div class="grid grid-cols-2 gap-4 mt-4">
+                    <label
+                      class="flex items-center justify-between cursor-pointer bg-white p-5 rounded-[1.25rem] border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all"
+                      ><span class="text-sm font-bold text-slate-800"
+                        >Uppercase</span
+                      >
+                      <input
+                        type="checkbox"
+                        id="pass-u"
+                        checked
+                        class="w-6 h-6 accent-teal-500 cursor-pointer"
+                        onchange="genPass()"
+                    /></label>
+                    <label
+                      class="flex items-center justify-between cursor-pointer bg-white p-5 rounded-[1.25rem] border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all"
+                      ><span class="text-sm font-bold text-slate-800"
+                        >Numbers</span
+                      >
+                      <input
+                        type="checkbox"
+                        id="pass-n"
+                        checked
+                        class="w-6 h-6 accent-teal-500 cursor-pointer"
+                        onchange="genPass()"
+                    /></label>
+                    <label
+                      class="flex items-center justify-between cursor-pointer bg-white p-5 rounded-[1.25rem] border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all col-span-2"
+                      ><span class="text-sm font-bold text-slate-800"
+                        >Special Symbols</span
+                      >
+                      <input
+                        type="checkbox"
+                        id="pass-s"
+                        checked
+                        class="w-6 h-6 accent-teal-500 cursor-pointer"
+                        onchange="genPass()"
+                    /></label>
+                  </div>
+                  <button
+                    onclick="genPass()"
+                    class="calc-btn w-full py-5 mt-4 bg-slate-900 hover:bg-slate-800 text-white border-slate-900 text-lg shadow-lg shadow-slate-900/20 transition-all font-bold rounded-2xl active:scale-95"
+                  >
+                    Generate New Password
+                  </button>
+                </div>
+              </div>
+
+              <!-- Dynamic SEO Content Place -->
+              <div
+                id="seo-content"
+                class="px-6 pb-12 sm:px-12 mt-10 pt-10 border-t border-slate-200 bg-slate-50/50 hidden"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+      <div
+        class="max-w-6xl mx-auto px-4 py-8 flex flex-col items-center justify-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="flex items-center justify-center w-8 h-8 bg-[#14b8a6] rounded shadow-sm text-white"
+          >
+            <span class="text-xl font-bold font-sans tracking-tighter">U</span>
+          </div>
+          <p class="text-sm font-bold text-slate-500">
+            © 2026 Utilo. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const tools = [
+        {
+          id: "world-clock",
+          name: "World Clock",
+          icon: "🌍",
+          cat: "Utilities",
+          desc: "Check current time across major global timezones and easily add custom cities.",
+        },
+        {
+          id: "currency-converter",
+          name: "Currency Converter",
+          icon: "💱",
+          cat: "Finance",
+          desc: "Convert global currencies instantly with real-time exchange rates.",
+        },
+        {
+          id: "unit-converter",
+          name: "Unit Converter",
+          icon: "⚖️",
+          cat: "Utilities",
+          desc: "Easily convert length, weight, temperature, area, volume, and speed.",
+        },
+        {
+          id: "scientific-calculator",
+          name: "Scientific Calc",
+          icon: "➗",
+          cat: "Math",
+          desc: "Perform advanced mathematical operations including trigonometry and logarithms.",
+        },
+        {
+          id: "emi-calculator",
+          name: "EMI Calc",
+          icon: "🏦",
+          cat: "Finance",
+          desc: "Plan your loan repayment accurately with monthly EMI breakdowns.",
+        },
+        {
+          id: "tip-calculator",
+          name: "Tip Calc",
+          icon: "💰",
+          cat: "Finance",
+          desc: "Calculate precise restaurant tips and split bills effortlessly.",
+        },
+        {
+          id: "percentage-calculator",
+          name: "Percentage",
+          icon: "🔢",
+          cat: "Math",
+          desc: "Quickly compute percentages for discounts, tips, and data analysis.",
+        },
+        {
+          id: "age-calculator",
+          name: "Age Calc",
+          icon: "🎂",
+          cat: "Utilities",
+          desc: "Find your exact age in years, months, and days with high precision.",
+        },
+        {
+          id: "bmi-calculator",
+          name: "BMI Calc",
+          icon: "💪",
+          cat: "Health",
+          desc: "Examine your Body Mass Index for a healthier lifestyle.",
+        },
+        {
+          id: "daily-calorie-calculator",
+          name: "Calorie Calc",
+          icon: "🔥",
+          cat: "Health",
+          desc: "Estimate everyday calorie needs for weight maintenance and goals.",
+        },
+        {
+          id: "password-generator",
+          name: "Password Gen",
+          icon: "🔑",
+          cat: "Security",
+          desc: "Create robust, secure passwords to shield your digital accounts.",
+        },
+      ];
+
+      // Core Navigation
+      function showHome(e) {
+        if (e) e.preventDefault();
+        window.history.pushState(null, null, " ");
+        document.title = "Utilo - Premium Free Online Tools";
+        document.getElementById("meta-desc").content =
+          "Fast, Accurate & Easy to Use Online Tools for your daily needs.";
+
+        document.getElementById("home-view").classList.add("active");
+        document.getElementById("tool-view").classList.remove("active");
+        document.getElementById("back-btn").classList.add("hidden");
+
+        const sw = document.getElementById("search-wrapper");
+        document.getElementById("global-search").value = "";
+        document
+          .getElementById("search-suggestions-dropdown")
+          .classList.add("hidden");
+
+        renderGrid(tools);
+        updateSidebarActive("");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function renderGrid(list) {
+        const grid = document.getElementById("tools-grid");
+        grid.innerHTML = list.length
+          ? list
+              .map(
+                (t) =>
+                  "<div onclick=\"showTool('" +
+                  t.id +
+                  '\')" class="bg-white p-6 rounded-[1.5rem] cursor-pointer flex flex-col items-center text-center gap-4 relative overflow-hidden group shadow-sm border border-slate-200/60 hover:border-teal-400 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300 transform hover:-translate-y-1">' +
+                  '<div class="text-4xl p-5 bg-slate-50 rounded-[1.25rem] group-hover:bg-teal-50 group-hover:scale-110 transition-all duration-300 relative z-10 border border-slate-100 group-hover:border-teal-200 shadow-sm">' +
+                  t.icon +
+                  "</div>" +
+                  '<h3 class="font-extrabold text-slate-800 text-lg leading-tight relative z-10 mt-1 group-hover:text-teal-700 transition-colors">' +
+                  t.name +
+                  "</h3>" +
+                  '<span class="text-[10px] uppercase tracking-widest font-black px-3 py-1.5 bg-slate-100 text-slate-500 group-hover:bg-teal-500 group-hover:text-white rounded-lg transition-colors">' +
+                  t.cat +
+                  "</span>" +
+                  "</div>",
+              )
+              .join("")
+          : '<p class="col-span-full text-center text-slate-500 py-12 font-medium text-lg">No tools found matching your search.</p>';
+      }
+
+      function renderSidebar() {
+        const nav = document.getElementById("sidebar-nav");
+        nav.innerHTML = tools
+          .map(
+            (t) =>
+              '<button id="nav-' +
+              t.id +
+              '" onclick="showTool(\'' +
+              t.id +
+              '\')" class="flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl transition-all border border-transparent text-sm font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-slate-50/0">' +
+              '<span class="text-xl">' +
+              t.icon +
+              '</span> <span class="truncate">' +
+              t.name +
+              "</span>" +
+              "</button>",
+          )
+          .join("");
+      }
+
+      function updateSidebarActive(id) {
+        document
+          .querySelectorAll("#sidebar-nav button")
+          .forEach(
+            (el) =>
+              (el.className =
+                "flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl transition-all border border-transparent text-sm font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900"),
+          );
+        if (id) {
+          const activeNav = document.getElementById("nav-" + id);
+          if (activeNav)
+            activeNav.className =
+              "flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl transition-all border border-teal-200 bg-teal-50 text-teal-800 font-extrabold shadow-sm";
+        }
+      }
+
+      function showTool(id) {
+        const toolMeta = tools.find((t) => t.id === id);
+        if (!toolMeta) return;
+
+        window.history.pushState(null, null, "#" + id);
+        document.title = toolMeta.name + " | Premium Free Tool | Utilo";
+        document.getElementById("meta-desc").content = toolMeta.desc;
+
+        document.getElementById("home-view").classList.remove("active");
+        document.getElementById("tool-view").classList.add("active");
+        document.getElementById("back-btn").classList.remove("hidden");
+
+        const sw = document.getElementById("search-wrapper");
+        document.getElementById("global-search").value = "";
+        document
+          .getElementById("search-suggestions-dropdown")
+          .classList.add("hidden");
+
+        document
+          .querySelectorAll(".tool-section")
+          .forEach((el) => el.classList.remove("active"));
+        const target = document.getElementById("tool-" + id);
+        if (target) target.classList.add("active");
+
+        updateSidebarActive(id);
+
+        const seoDiv = document.getElementById("seo-content");
+        seoDiv.classList.remove("hidden");
+        seoDiv.innerHTML =
+          '<div class="max-w-3xl mx-auto">' +
+          '<h2 class="text-2xl font-extrabold text-slate-900 mb-3">About ' +
+          toolMeta.name +
+          "</h2>" +
+          '<p class="text-slate-600 text-base mb-10 leading-relaxed font-medium">' +
+          toolMeta.desc +
+          " We built this utility to be extremely fast and secure. It runs 100% locally within your browser using JavaScript, meaning your data never leaves your device and there are no server delays. Enjoy this premium, privacy-first tool entirely for free.</p>" +
+          '<h3 class="text-xl font-extrabold text-slate-900 mb-5">Frequently Asked Questions</h3>' +
+          '<div class="space-y-4">' +
+          '<details class="group rounded-2xl">' +
+          '<summary class="font-extrabold text-slate-800 bg-white hover:bg-slate-50 transition-colors p-5 rounded-2xl border border-slate-200 group-open:border-teal-300 group-open:bg-teal-50/50 group-open:rounded-b-none group-open:text-teal-800 shadow-sm">Is this tool totally free?</summary>' +
+          '<p class="px-6 pb-6 pt-4 font-medium text-slate-600 border border-t-0 border-teal-300 rounded-b-2xl bg-white shadow-sm">Yes, absolutely. The tool is provided without any subscriptions, sign-ups, or usage limits.</p>' +
+          "</details>" +
+          '<details class="group rounded-2xl">' +
+          '<summary class="font-extrabold text-slate-800 bg-white hover:bg-slate-50 transition-colors p-5 rounded-2xl border border-slate-200 group-open:border-teal-300 group-open:bg-teal-50/50 group-open:rounded-b-none group-open:text-teal-800 shadow-sm">Is my data secure?</summary>' +
+          '<p class="px-6 pb-6 pt-4 font-medium text-slate-600 border border-t-0 border-teal-300 rounded-b-2xl bg-white shadow-sm">Complete privacy is guaranteed. Calculations happen purely in your browser memory. We never store, track, or transmit your inputs.</p>' +
+          "</details>" +
+          '<details class="group rounded-2xl">' +
+          '<summary class="font-extrabold text-slate-800 bg-white hover:bg-slate-50 transition-colors p-5 rounded-2xl border border-slate-200 group-open:border-teal-300 group-open:bg-teal-50/50 group-open:rounded-b-none group-open:text-teal-800 shadow-sm">Does it work well on mobile?</summary>' +
+          '<p class="px-6 pb-6 pt-4 font-medium text-slate-600 border border-t-0 border-teal-300 rounded-b-2xl bg-white shadow-sm">Yes, the tool features a premium responsive design tailored for mobile phones, tablets, and large desktop screens seamlessly.</p>' +
+          "</details>" +
+          "</div>" +
+          "</div>";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function getRelevanceScore(query, tool) {
+        if (!query) return 1;
+        let q = query.toLowerCase().trim();
+        if (!q) return 1;
+        const name = tool.name.toLowerCase();
+        const cat = tool.cat.toLowerCase();
+        const desc = tool.desc.toLowerCase();
+
+        if (name === q) return 100;
+        if (name.startsWith(q)) return 90;
+        if (name.includes(" " + q)) return 80;
+        if (name.includes(q)) return 70;
+        if (cat === q) return 60;
+        if (cat.includes(q)) return 50;
+        if (desc.includes(q)) return 40;
+
+        // Fuzzy matching (subsequence)
+        let qIdx = 0;
+        for (let i = 0; i < name.length; i++) {
+          if (name[i] === q[qIdx]) {
+            qIdx++;
+          }
+          if (qIdx === q.length) break;
+        }
+        if (qIdx === q.length) return 30;
+
+        return 0;
+      }
+
+      function doSearch(q) {
+        const sortedTools = [...tools]
+          .map((t) => ({ ...t, _score: getRelevanceScore(q, t) }))
+          .filter((t) => t._score > 0)
+          .sort((a, b) => b._score - a._score);
+
+        // If on home page, update grid
+        if (document.getElementById("home-view").classList.contains("active")) {
+          renderGrid(sortedTools);
+        }
+
+        const suggestBox = document.getElementById(
+          "search-suggestions-dropdown",
+        );
+        const queryStr = q.trim();
+
+        if (queryStr.length === 0) {
+          suggestBox.classList.add("hidden");
+          return;
+        }
+
+        if (sortedTools.length === 0) {
+          suggestBox.innerHTML =
+            '<div class="px-4 py-3 text-sm text-slate-500 font-medium">No tools found matching your search.</div>';
+        } else {
+          suggestBox.innerHTML = sortedTools
+            .map(
+              (t) =>
+                "<div onclick=\"showTool('" +
+                t.id +
+                "'); document.getElementById('global-search').blur(); document.getElementById('search-suggestions-dropdown').classList.add('hidden');\" class=\"px-4 py-3 hover:bg-teal-50 cursor-pointer flex items-center gap-3 transition-colors\">" +
+                '<div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-xl shadow-sm border border-slate-200/60">' +
+                t.icon +
+                "</div>" +
+                "<div>" +
+                '<h4 class="font-bold text-slate-800 text-sm leading-snug">' +
+                t.name +
+                "</h4>" +
+                '<span class="text-[10px] uppercase tracking-widest font-black text-slate-400">' +
+                t.cat +
+                "</span>" +
+                "</div>" +
+                "</div>",
+            )
+            .slice(0, 5) // restrict suggestions count
+            .join("");
+        }
+        suggestBox.classList.remove("hidden");
+      }
+
+      // --- Specific Tools Logic ---
+
+      // 1. World Clock
+      const allTz = Intl.supportedValuesOf
+        ? Intl.supportedValuesOf("timeZone")
+        : [
+            "America/New_York",
+            "Europe/London",
+            "Asia/Dubai",
+            "Asia/Tokyo",
+            "Asia/Karachi",
+            "Australia/Sydney",
+            "Europe/Paris",
+            "America/Los_Angeles",
+          ];
+      let clockCities = [
+        { name: "New York", tz: "America/New_York" },
+        { name: "London", tz: "Europe/London" },
+        { name: "Dubai", tz: "Asia/Dubai" },
+        { name: "Tokyo", tz: "Asia/Tokyo" },
+      ];
+      let selectedCityToAdd = null;
+
+      function renderClocks() {
+        const grid = document.getElementById("clock-grid");
+        grid.innerHTML = clockCities
+          .map(
+            (c, i) =>
+              '<div class="p-6 bg-slate-50 rounded-[1.25rem] border border-slate-200/80 text-center relative group hover:shadow-md hover:border-teal-300 transition-all">' +
+              (i > 3
+                ? '<button onclick="removeClock(' +
+                  i +
+                  ')" class="absolute top-3 right-3 text-slate-300 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded-full p-1.5 shadow-sm active:scale-95"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>'
+                : "") +
+              '<h3 class="text-slate-600 font-extrabold mb-3 text-lg">' +
+              c.name +
+              "</h3>" +
+              '<div class="text-4xl font-black text-slate-900 font-mono tracking-tight" id="clock-' +
+              i +
+              '">--:--:--</div>' +
+              '<div class="text-sm font-bold text-slate-400 mt-2 uppercase tracking-wide" id="clock-date-' +
+              i +
+              '">---</div>' +
+              "</div>",
+          )
+          .join("");
+        updateClocks();
+      }
+
+      function updateClocks() {
+        const now = new Date();
+        clockCities.forEach((c, i) => {
+          const timeEl = document.getElementById("clock-" + i);
+          const dateEl = document.getElementById("clock-date-" + i);
+          if (timeEl) {
+            timeEl.innerText = now.toLocaleTimeString("en-US", {
+              timeZone: c.tz,
+              hour12: false,
+            });
+            dateEl.innerText = now.toLocaleDateString("en-US", {
+              timeZone: c.tz,
+              weekday: "short",
+              month: "short",
+              day: "numeric",
+            });
+          }
+        });
+      }
+
+      function handleCitySearch(q) {
+        const suggs = document.getElementById("clock-suggestions");
+        q = q.toLowerCase().trim();
+        if (!q) {
+          suggs.classList.add("hidden");
+          selectedCityToAdd = null;
+          return;
+        }
+
+        let matches = allTz
+          .filter((tz) => tz.toLowerCase().includes(q))
+          .slice(0, 8);
+        if (matches.length > 0) {
+          suggs.innerHTML = matches
+            .map((tz) => {
+              const parts = tz.split("/");
+              const display = parts[parts.length - 1].replace(/_/g, " ");
+              return (
+                '<div class="clock-suggestion font-bold" onclick="selectCity(\'' +
+                display +
+                "', '" +
+                tz +
+                "')\">" +
+                display +
+                ' <span class="text-xs font-semibold text-slate-400 ml-2">(' +
+                tz +
+                ")</span></div>"
+              );
+            })
+            .join("");
+          suggs.classList.remove("hidden");
+        } else {
+          suggs.innerHTML =
+            '<div class="p-3 text-sm text-slate-500 font-medium text-center">No matching city found</div>';
+          suggs.classList.remove("hidden");
+        }
+      }
+
+      function selectCity(name, tz) {
+        selectedCityToAdd = { name, tz };
+        document.getElementById("clock-city-search").value = name;
+        document.getElementById("clock-suggestions").classList.add("hidden");
+      }
+
+      function addSelectedCity() {
+        if (selectedCityToAdd) {
+          if (!clockCities.find((c) => c.tz === selectedCityToAdd.tz)) {
+            clockCities.push(selectedCityToAdd);
+            renderClocks();
+          }
+          document.getElementById("clock-city-search").value = "";
+          selectedCityToAdd = null;
+          document.getElementById("clock-suggestions").classList.add("hidden");
+        } else {
+          const q = document
+            .getElementById("clock-city-search")
+            .value.toLowerCase()
+            .trim();
+          const match = allTz.find((tz) => tz.toLowerCase().includes(q));
+          if (match) {
+            const parts = match.split("/");
+            const name = parts[parts.length - 1].replace(/_/g, " ");
+            if (!clockCities.find((c) => c.tz === match)) {
+              clockCities.push({ name, tz: match });
+              renderClocks();
+            }
+            document.getElementById("clock-city-search").value = "";
+          }
+        }
+      }
+      function removeClock(i) {
+        clockCities.splice(i, 1);
+        renderClocks();
+      }
+      setInterval(updateClocks, 1000);
+
+      // 2. Currency Converter
+      // Expanded 60+ Currencies
+      const currNames = {
+        USD: "US Dollar",
+        EUR: "Euro",
+        GBP: "British Pound",
+        INR: "Indian Rupee",
+        PKR: "Pakistani Rupee",
+        AED: "UAE Dirham",
+        SAR: "Saudi Riyal",
+        CAD: "Canadian Dollar",
+        AUD: "Australian Dollar",
+        JPY: "Japanese Yen",
+        CNY: "Chinese Yuan",
+        BRL: "Brazilian Real",
+        ZAR: "South African Rand",
+        SGD: "Singapore Dollar",
+        CHF: "Swiss Franc",
+        NZD: "New Zealand Dollar",
+        HKD: "Hong Kong Dollar",
+        SEK: "Swedish Krona",
+        KRW: "South Korean Won",
+        NOK: "Norwegian Krone",
+        MXN: "Mexican Peso",
+        RUB: "Russian Ruble",
+        TRY: "Turkish Lira",
+        MYR: "Malaysian Ringgit",
+        THB: "Thai Baht",
+        IDR: "Indonesian Rupiah",
+        HUF: "Hungarian Forint",
+        CZK: "Czech Koruna",
+        ILS: "Israeli New Shekel",
+        PHP: "Philippine Peso",
+        PLN: "Polish Zloty",
+        DKK: "Danish Krone",
+        RON: "Romanian Leu",
+        COP: "Colombian Peso",
+        CLP: "Chilean Peso",
+        EGP: "Egyptian Pound",
+        JOD: "Jordanian Dinar",
+        OMR: "Omani Rial",
+        QAR: "Qatari Riyal",
+        KWD: "Kuwaiti Dinar",
+        BHD: "Bahraini Dinar",
+        TWD: "New Taiwan Dollar",
+        ARS: "Argentine Peso",
+        PEN: "Peruvian Sol",
+        VND: "Vietnamese Dong",
+        NGN: "Nigerian Naira",
+        KES: "Kenyan Shilling",
+        LKR: "Sri Lankan Rupee",
+        BDT: "Bangladeshi Taka",
+        MAD: "Moroccan Dirham",
+        VUV: "Vanuatu Vatu",
+        XAF: "CFA Franc BEAC",
+        XOF: "CFA Franc BCEAO",
+        ISK: "Icelandic Króna",
+        DZD: "Algerian Dinar",
+        GHS: "Ghanaian Cedi",
+        UZS: "Uzbekistani Som",
+        KZT: "Kazakhstani Tenge",
+        UAH: "Ukrainian Hryvnia",
+        TZS: "Tanzanian Shilling",
+      };
+
+      let rates = {};
+      let currState = { from: "USD", to: "INR" };
+
+      function initCurr() {
+        renderCurrDropdown("from", currNames);
+        renderCurrDropdown("to", currNames);
+        updateCurrBtnText("from");
+        updateCurrBtnText("to");
+
+        fetch("https://api.exchangerate-api.com/v4/latest/USD")
+          .then((res) => res.json())
+          .then((data) => {
+            rates = data.rates;
+            const el = document.getElementById("curr-info");
+            if (el) el.innerText = "Live exchange rates updated.";
+            calcCurr();
+          })
+          .catch(() => {
+            const el = document.getElementById("curr-info");
+            if (el)
+              el.innerText = "Failed to fetch rates. Using exact latest rates.";
+          });
+      }
+
+      function renderCurrDropdown(type, listObj) {
+        const listDiv = document.getElementById("curr-" + type + "-list");
+        let h = "";
+        const sorted = Object.entries(listObj).sort();
+        if (sorted.length === 0) {
+          h =
+            '<div class="px-4 py-2 text-sm text-slate-500">No matching currencies.</div>';
+        } else {
+          sorted.forEach(([code, name]) => {
+            const isActive = currState[type] === code;
+            h +=
+              `<div onclick="selectCurr('${type}', '${code}')" class="px-4 py-2.5 hover:bg-teal-50 cursor-pointer flex items-center justify-between transition-colors ${isActive ? "bg-teal-50/50 font-bold text-teal-700" : "text-slate-700 font-medium"}">` +
+              `<span><span class="w-10 inline-block font-mono text-slate-400">${code}</span> ${name}</span>` +
+              (isActive
+                ? `<svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>`
+                : "") +
+              `</div>`;
+          });
+        }
+        if (listDiv) listDiv.innerHTML = h;
+      }
+
+      function toggleDropdown(type) {
+        const drop = document.getElementById("curr-" + type + "-dropdown");
+        const otherDrop = document.getElementById(
+          "curr-" + (type === "from" ? "to" : "from") + "-dropdown",
+        );
+        if (otherDrop) otherDrop.classList.add("hidden");
+        if (drop) {
+          drop.classList.toggle("hidden");
+          if (!drop.classList.contains("hidden")) {
+            const s = document.getElementById("curr-" + type + "-search");
+            if (s) s.focus();
+          }
+        }
+      }
+
+      function filterCurr(type, q) {
+        q = q.toLowerCase();
+        let filtered = {};
+        for (let key in currNames) {
+          if (
+            key.toLowerCase().includes(q) ||
+            currNames[key].toLowerCase().includes(q)
+          ) {
+            filtered[key] = currNames[key];
+          }
+        }
+        renderCurrDropdown(type, filtered);
+      }
+
+      function selectCurr(type, code) {
+        currState[type] = code;
+        updateCurrBtnText(type);
+        const drop = document.getElementById("curr-" + type + "-dropdown");
+        if (drop) drop.classList.add("hidden");
+        const search = document.getElementById("curr-" + type + "-search");
+        if (search) search.value = "";
+        renderCurrDropdown(type, currNames);
+        calcCurr();
+      }
+
+      function updateCurrBtnText(type) {
+        const txt = document.getElementById("curr-" + type + "-text");
+        if (txt)
+          txt.innerText = currState[type] + " - " + currNames[currState[type]];
+      }
+
+      function calcCurr() {
+        let f = currState.from;
+        let t = currState.to;
+        let currAmtInput = document.getElementById("curr-amount");
+        if (!currAmtInput) return;
+        let amt = parseFloat(currAmtInput.value) || 0;
+        if (!rates[f] || !rates[t]) return;
+        let r = rates[t] / rates[f];
+        let rawVal = amt * r;
+        let formatted =
+          rawVal < 0.01
+            ? rawVal.toPrecision(3)
+            : parseFloat(rawVal.toFixed(2)).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              });
+        const resEl = document.getElementById("curr-res");
+        if (resEl) resEl.innerText = formatted + " " + t;
+      }
+
+      function swapCurr() {
+        let temp = currState.from;
+        currState.from = currState.to;
+        currState.to = temp;
+        updateCurrBtnText("from");
+        updateCurrBtnText("to");
+        renderCurrDropdown("from", currNames);
+        renderCurrDropdown("to", currNames);
+        calcCurr();
+      }
+
+      // 3. Unit Converter
+      const unitData = {
+        length: {
+          base: "meter",
+          units: {
+            meter: 1,
+            kilometer: 0.001,
+            centimeter: 100,
+            millimeter: 1000,
+            mile: 0.000621371,
+            yard: 1.09361,
+            foot: 3.28084,
+            inch: 39.3701,
+          },
+        },
+        weight: {
+          base: "kilogram",
+          units: {
+            kilogram: 1,
+            gram: 1000,
+            milligram: 1e6,
+            metric_ton: 0.001,
+            pound: 2.20462,
+            ounce: 35.274,
+          },
+        },
+        temperature: {},
+        area: {
+          base: "sq_meter",
+          units: {
+            sq_meter: 1,
+            hectare: 1e-4,
+            sq_kilometer: 1e-6,
+            acre: 0.000247105,
+            sq_foot: 10.7639,
+            sq_inch: 1550,
+          },
+        },
+        volume: {
+          base: "liter",
+          units: {
+            liter: 1,
+            milliliter: 1000,
+            cubic_meter: 0.001,
+            gallon_us: 0.264172,
+            quart_us: 1.05669,
+            pint_us: 2.11338,
+            cup: 4.22675,
+          },
+        },
+        speed: {
+          base: "mps",
+          units: { mps: 1, kmph: 3.6, mph: 2.23694, knot: 1.94384 },
+        },
+      };
+      function updateUnits() {
+        const type = document.getElementById("unit-type").value;
+        const selF = document.getElementById("unit-from");
+        const selT = document.getElementById("unit-to");
+        if (type === "temperature") {
+          const opts =
+            '<option value="c">Celsius</option><option value="f">Fahrenheit</option><option value="k">Kelvin</option>';
+          selF.innerHTML = opts;
+          selT.innerHTML = opts;
+          selT.value = "f";
+        } else {
+          const opts = Object.keys(unitData[type].units)
+            .map(
+              (k) =>
+                '<option value="' +
+                k +
+                '">' +
+                k.replace("_", " ") +
+                "</option>",
+            )
+            .join("");
+          selF.innerHTML = opts;
+          selT.innerHTML = opts;
+          selT.selectedIndex = 1;
+        }
+        calcUnit();
+      }
+      function calcUnit() {
+        const type = document.getElementById("unit-type").value;
+        const val = parseFloat(document.getElementById("unit-val").value) || 0;
+        const f = document.getElementById("unit-from").value;
+        const t = document.getElementById("unit-to").value;
+        let res = 0;
+        if (type === "temperature") {
+          if (f === t) res = val;
+          else if (f === "c" && t === "f") res = (val * 9) / 5 + 32;
+          else if (f === "c" && t === "k") res = val + 273.15;
+          else if (f === "f" && t === "c") res = ((val - 32) * 5) / 9;
+          else if (f === "f" && t === "k") res = ((val - 32) * 5) / 9 + 273.15;
+          else if (f === "k" && t === "c") res = val - 273.15;
+          else if (f === "k" && t === "f") res = ((val - 273.15) * 9) / 5 + 32;
+        } else {
+          const inBase = val / unitData[type].units[f];
+          res = inBase * unitData[type].units[t];
+        }
+        const strRes = res.toPrecision(7);
+        document.getElementById("unit-res").innerText =
+          Number(strRes).toString();
+      }
+
+      // 4. Scientific Calculator
+      let calcStr = "";
+      const calcRes = document.getElementById("calc-res");
+      const calcExp = document.getElementById("calc-exp");
+
+      // Trig functions with degrees
+      function _sin(d) {
+        return Math.sin((d * Math.PI) / 180);
+      }
+      function _cos(d) {
+        return Math.cos((d * Math.PI) / 180);
+      }
+      function _tan(d) {
+        return Math.tan((d * Math.PI) / 180);
+      }
+      function _log(v) {
+        return Math.log10(v);
+      }
+      function _ln(v) {
+        return Math.log(v);
+      }
+      function _sqrt(v) {
+        return Math.sqrt(v);
+      }
+
+      function ca(val) {
+        calcStr += val;
+        renderCalc();
+      }
+      function cDel() {
+        calcStr = calcStr.slice(0, -1);
+        renderCalc();
+      }
+      function ce() {
+        calcStr = "";
+        calcExp.innerText = "";
+        renderCalc();
+      }
+      function renderCalc() {
+        calcRes.innerText = calcStr || "0";
+      }
+      function cEq() {
+        try {
+          let expr = calcStr;
+          if (!expr) return;
+
+          let openP = (expr.match(/\(/g) || []).length;
+          let closeP = (expr.match(/\)/g) || []).length;
+          while (openP > closeP) {
+            expr += ")";
+            closeP++;
+          }
+
+          let evalExpr = expr
+            .replace(/sin\(/g, "_sin(")
+            .replace(/cos\(/g, "_cos(")
+            .replace(/tan\(/g, "_tan(")
+            .replace(/log\(/g, "_log(")
+            .replace(/ln\(/g, "_ln(")
+            .replace(/sqrt\(/g, "_sqrt(")
+            .replace(/π/g, "Math.PI")
+            .replace(/\be\b/g, "Math.E")
+            .replace(/\^/g, "**");
+
+          let res = eval(evalExpr);
+          if (isNaN(res) || !isFinite(res)) res = "Error";
+          else res = Number(res.toFixed(10)).toString();
+
+          calcExp.innerText = expr + " =";
+          calcStr = res;
+          calcRes.innerText = res;
+        } catch (e) {
+          calcRes.innerText = "Error";
+          calcStr = "";
+        }
+      }
+
+      // Add Keyboard Listeners specifically to the document but only active when calc tool is shown
+      document.addEventListener("keydown", function (event) {
+        const activeTool = document.querySelector(".tool-section:not(.hidden)");
+        if (activeTool && activeTool.id === "tool-scientific-calculator") {
+          const key = event.key;
+          if (/[0-9]/.test(key)) {
+            ca(key);
+          } else if (["+", "-", "*", "/", "(", ")", ".", "^"].includes(key)) {
+            ca(key);
+          } else if (key === "Enter" || key === "=") {
+            cEq();
+          } else if (key === "Backspace") {
+            cDel();
+          } else if (key === "Escape") {
+            ce();
+          }
+        }
+      });
+
+      // 5. EMI
+      function calcEmi() {
+        let p = parseFloat(document.getElementById("emi-p").value) || 0;
+        let r = parseFloat(document.getElementById("emi-r").value) || 0;
+        let n = parseInt(document.getElementById("emi-n").value) || 0;
+        if (p && r && n) {
+          r = r / 12 / 100;
+          n = n * 12;
+          let emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+          document.getElementById("emi-res").innerText = emi.toFixed(2);
+          document.getElementById("emi-total").innerText = (
+            emi * n -
+            p
+          ).toFixed(2);
+        } else {
+          document.getElementById("emi-res").innerText = "0.00";
+          document.getElementById("emi-total").innerText = "0.00";
+        }
+      }
+
+      // 6. Tip
+      function calcTip() {
+        let a = parseFloat(document.getElementById("tip-amt").value) || 0;
+        let p = parseFloat(document.getElementById("tip-perc").value) || 0;
+        let n = parseInt(document.getElementById("tip-ppl").value) || 1;
+        let t = a * (p / 100);
+        let tot = a + t;
+        document.getElementById("tip-res").innerText = (tot / n).toFixed(2);
+        document.getElementById("tip-tot").innerText = tot.toFixed(2);
+      }
+
+      // 7. Percentage
+      function calcPerc() {
+        let p1 = parseFloat(document.getElementById("p1").value) || 0,
+          p2 = parseFloat(document.getElementById("p2").value) || 0;
+        document.getElementById("p-res1").innerText = ((p1 / 100) * p2)
+          .toFixed(2)
+          .replace(/\.00$/, "");
+
+        let p3 = parseFloat(document.getElementById("p3").value) || 0,
+          p4 = parseFloat(document.getElementById("p4").value) || 0;
+        let r2 = p4 ? (p3 / p4) * 100 : 0;
+        document.getElementById("p-res2").innerText =
+          r2.toFixed(2).replace(/\.00$/, "") + "%";
+
+        let p5 = parseFloat(document.getElementById("p5").value) || 0,
+          p6 = parseFloat(document.getElementById("p6").value) || 0;
+        let r3 = p5 ? ((p6 - p5) / p5) * 100 : 0;
+        let s = r3 >= 0 ? "+" : "";
+        document.getElementById("p-res3").innerText =
+          s + r3.toFixed(2).replace(/\.00$/, "") + "%";
+      }
+
+      // 8. Age
+      function calcAge() {
+        const dobStr = document.getElementById("age-dob").value;
+        const msg = document.getElementById("age-msg");
+        if (!dobStr) return;
+        const dob = new Date(dobStr);
+        const now = new Date();
+        if (dob > now) {
+          msg.classList.remove("hidden");
+          document.getElementById("age-y").innerText = "0";
+          document.getElementById("age-m").innerText = "0";
+          document.getElementById("age-d").innerText = "0";
+          return;
+        }
+        msg.classList.add("hidden");
+        let y = now.getFullYear() - dob.getFullYear();
+        let m = now.getMonth() - dob.getMonth();
+        let d = now.getDate() - dob.getDate();
+        if (d < 0) {
+          m--;
+          const l = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+          d += l;
+        }
+        if (m < 0) {
+          y--;
+          m += 12;
+        }
+        document.getElementById("age-y").innerText = y;
+        document.getElementById("age-m").innerText = m;
+        document.getElementById("age-d").innerText = d;
+      }
+
+      // 9. BMI
+      function updBMI() {
+        const isMet =
+          document.querySelector('input[name="bmi-sys"]:checked').value ===
+          "metric";
+        document.getElementById("bmi-met").style.display = isMet
+          ? "block"
+          : "none";
+        document.getElementById("bmi-imp").style.display = isMet
+          ? "none"
+          : "block";
+        calcBmi();
+      }
+      function calcBmi() {
+        const isMet =
+          document.querySelector('input[name="bmi-sys"]:checked').value ===
+          "metric";
+        let bmi = 0;
+        if (isMet) {
+          let kg = parseFloat(document.getElementById("bmi-kg").value) || 0;
+          let m =
+            parseFloat(document.getElementById("bmi-cm").value) / 100 || 0;
+          if (kg && m) bmi = kg / (m * m);
+        } else {
+          let lb = parseFloat(document.getElementById("bmi-lb").value) || 0;
+          let inch = parseFloat(document.getElementById("bmi-in").value) || 0;
+          if (lb && inch) bmi = (lb / (inch * inch)) * 703;
+        }
+        document.getElementById("bmi-res").innerText = bmi
+          ? bmi.toFixed(1)
+          : "0.0";
+        const catEl = document.getElementById("bmi-cat");
+        let cat = "N/A",
+          clr = "bg-slate-500";
+        if (bmi > 0 && bmi < 18.5) {
+          cat = "Underweight";
+          clr = "bg-amber-500";
+        } else if (bmi >= 18.5 && bmi < 25) {
+          cat = "Normal Weight";
+          clr = "bg-teal-600";
+        } else if (bmi >= 25 && bmi < 30) {
+          cat = "Overweight";
+          clr = "bg-rose-400";
+        } else if (bmi >= 30) {
+          cat = "Obese";
+          clr = "bg-rose-600";
+        }
+        catEl.innerText = cat;
+        catEl.className =
+          "text-sm font-black text-white px-6 py-2 rounded-full mt-5 uppercase tracking-widest shadow-md " +
+          clr;
+      }
+
+      // 10. Calorie
+      function calcCal() {
+        const g = document.getElementById("cal-g").value;
+        const a = parseFloat(document.getElementById("cal-a").value) || 0;
+        const w = parseFloat(document.getElementById("cal-w").value) || 0;
+        const h = parseFloat(document.getElementById("cal-h").value) || 0;
+        const act = parseFloat(document.getElementById("cal-act").value) || 1.2;
+        let bmr = 0;
+        if (w && h && a) {
+          if (g === "m") bmr = 10 * w + 6.25 * h - 5 * a + 5;
+          else bmr = 10 * w + 6.25 * h - 5 * a - 161;
+          let tdee = Math.round(bmr * act);
+          document.getElementById("cal-res").innerText = tdee;
+        } else {
+          document.getElementById("cal-res").innerText = "---";
+        }
+      }
+
+      // 11. Password
+      function genPass() {
+        const len = parseInt(document.getElementById("pass-len").value) || 16;
+        const useU = document.getElementById("pass-u").checked;
+        const useN = document.getElementById("pass-n").checked;
+        const useS = document.getElementById("pass-s").checked;
+        const lChars = "abcdefghijklmnopqrstuvwxyz";
+        const uChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const nChars = "0123456789";
+        const sChars = "!@#$%^&*()_+~`-=[]{}|;:,.<>?";
+
+        let chars = lChars;
+        if (useU) chars += uChars;
+        if (useN) chars += nChars;
+        if (useS) chars += sChars;
+
+        let pass = "";
+        for (let i = 0; i < len; i++)
+          pass += chars.charAt(Math.floor(Math.random() * chars.length));
+        document.getElementById("pass-res").innerText = pass;
+      }
+      function copyPass() {
+        let p = document.getElementById("pass-res").innerText;
+        if (p) {
+          navigator.clipboard.writeText(p);
+          let btn = document.getElementById("copy-btn");
+          btn.innerText = "Copied!";
+          btn.className =
+            "absolute right-3 top-3 bottom-3 px-6 bg-slate-800 text-white rounded-xl text-sm font-bold uppercase tracking-wider transition-colors shadow-sm cursor-pointer";
+          setTimeout(() => {
+            btn.innerText = "Copy";
+            btn.className =
+              "absolute right-3 top-3 bottom-3 px-6 bg-teal-500 hover:bg-teal-600 text-white rounded-xl text-sm font-bold uppercase tracking-wider transition-colors shadow-sm cursor-pointer active:scale-95";
+          }, 2000);
+        }
+      }
+
+      // Init
+      window.onload = function () {
+        renderSidebar();
+        renderClocks();
+        initCurr();
+        updateUnits();
+        calcEmi();
+        calcTip();
+        calcPerc();
+        updBMI();
+        calcCal();
+        genPass();
+
+        window.addEventListener("popstate", (e) => {
+          const h = window.location.hash.replace("#", "");
+          if (h) showTool(h);
+          else showHome(null);
+        });
+
+        const initHash = window.location.hash.replace("#", "");
+        if (initHash) showTool(initHash);
+        else showHome(null);
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".dropdown-container")) {
+            if (document.getElementById("curr-from-dropdown"))
+              document
+                .getElementById("curr-from-dropdown")
+                .classList.add("hidden");
+            if (document.getElementById("curr-to-dropdown"))
+              document
+                .getElementById("curr-to-dropdown")
+                .classList.add("hidden");
+          }
+          if (
+            !e.target.closest("#clock-city-search") &&
+            !e.target.closest("#clock-suggestions")
+          ) {
+            document
+              .getElementById("clock-suggestions")
+              .classList.add("hidden");
+          }
+          if (
+            !e.target.closest("#global-search") &&
+            !e.target.closest("#search-suggestions-dropdown")
+          ) {
+            document
+              .getElementById("search-suggestions-dropdown")
+              .classList.add("hidden");
+          }
+        });
+      };
+    </script>
+  </body>
+</html>
