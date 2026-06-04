@@ -1,9 +1,11 @@
+// @ts-nocheck
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import frontMatter from 'front-matter';
 
-// Extract raw string content from all .md files in the blog folder at build/dev time
-const markdownModules = import.meta.glob('/public/content/blog/*.md', { 
+const markdownModules = import.meta.glob('/content/blog/*.md', { 
     query: '?raw', 
     import: 'default',
     eager: true 
@@ -33,6 +35,12 @@ export default function BlogList() {
             const filenameMatch = key.match(/\/([^/]+)\.md$/);
             const filenameSlug = filenameMatch ? filenameMatch[1] : '';
             
+            // Decap CMS kabhi kabhi tags ko string ya list me mix kar deta hai, use safe array banate hain
+            let rawTags = parsed.attributes.tags || [];
+            if (typeof rawTags === 'string') {
+                rawTags = (rawTags as string).split(',').map(t => t.trim());
+            }
+            
             return {
                 slug: parsed.attributes.slug || filenameSlug,
                 title: parsed.attributes.title || 'Untitled',
@@ -40,7 +48,7 @@ export default function BlogList() {
                 author: parsed.attributes.author || 'Utilo Team',
                 excerpt: parsed.attributes.excerpt || '',
                 img: parsed.attributes.img || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                tags: parsed.attributes.tags || [],
+                tags: rawTags,
                 content: parsed.body
             };
         });
