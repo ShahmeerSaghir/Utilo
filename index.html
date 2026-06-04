@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta name="google-site-verification" content="ls1cNbAd9X0s38O2A2QTWKZZxFXgywYpWRE2wc53t0I" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Utilo - Premium Free Online Tools</title>
@@ -222,18 +221,23 @@
       <div
         class="max-w-6xl mx-auto px-4 w-full flex items-center justify-between gap-4"
       >
-        <a
-          href="#"
-          onclick="showHome(event)"
-          class="text-2xl font-extrabold text-slate-900 flex items-center gap-2.5 group tracking-tight shrink-0 outline-none rounded-xl focus-visible:ring-2 focus-visible:ring-teal-400"
-        >
-          <div
-            class="flex items-center justify-center w-10 h-10 bg-[#14b8a6] rounded-lg shadow-sm text-white"
+        <div class="flex items-center gap-4 sm:gap-6 shrink-0">
+          <a
+            href="#"
+            onclick="showHome(event)"
+            class="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2 sm:gap-2.5 group tracking-tight outline-none rounded-xl focus-visible:ring-2 focus-visible:ring-teal-400"
           >
-            <span class="text-2xl font-bold font-sans tracking-tighter">U</span>
-          </div>
-          Utilo
-        </a>
+            <div
+              class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-[#14b8a6] rounded-lg shadow-sm text-white"
+            >
+              <span
+                class="text-xl sm:text-2xl font-bold font-sans tracking-tighter"
+                >U</span
+              >
+            </div>
+            <span class="hidden sm:inline">Utilo</span>
+          </a>
+        </div>
 
         <div
           id="search-wrapper"
@@ -295,7 +299,7 @@
     </header>
 
     <main
-      class="flex-grow flex flex-col relative w-full pt-8 sm:pt-12 pb-20 min-h-[calc(100vh-160px)]"
+      class="flex-grow flex flex-col relative w-full pt-8 sm:pt-12 pb-8 min-h-[calc(100vh-160px)]"
     >
       <div
         class="max-w-6xl mx-auto px-4 w-full h-full flex flex-col lg:flex-row gap-8"
@@ -1482,23 +1486,307 @@
               ></div>
             </div>
           </div>
+
+          <!-- About View -->
+          <div id="about-view" class="view w-full hidden">
+            <div
+              class="mb-10 pl-1 text-center sm:text-left animate-in fade-in slide-in-from-bottom-4 duration-500"
+            >
+              <h1
+                class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-3"
+              >
+                About <span class="text-[#14b8a6]">Utilo</span>
+              </h1>
+              <p class="text-lg text-slate-500 font-medium">
+                Your go-to collection of premium, fast, and secure client-side
+                tools.
+              </p>
+            </div>
+            <div
+              class="bg-white rounded-[2rem] shadow-sm border border-slate-200/60 p-8 sm:p-12 mb-10 max-w-4xl"
+            >
+              <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                Our Mission
+              </h2>
+              <p class="text-slate-600 mb-6 leading-relaxed">
+                Utilo was built to provide a clean, ad-free, and lightning-fast
+                experience for everyday utilities. We believe that tools like
+                calculators, formatters, and converters should be instantly
+                accessible without unnecessary clutter or tracking.
+              </p>
+              <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                Privacy First
+              </h2>
+              <p class="text-slate-600 leading-relaxed">
+                All of our tools run entirely in your browser. No data is sent
+                to our servers when you convert currencies, calculate BMI, or
+                format JSON. Your privacy is guaranteed by design.
+              </p>
+            </div>
+          </div>
+
+          <!-- Blog List View -->
+          <div id="blog-list-view" class="view w-full hidden">
+            <div
+              class="mb-10 pl-1 text-center sm:text-left animate-in fade-in slide-in-from-bottom-4 duration-500"
+            >
+              <h1
+                class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-3"
+              >
+                Utilo <span class="text-[#14b8a6]">Blog</span>
+              </h1>
+              <p class="text-lg text-slate-500 font-medium">
+                Tips, guides, and updates from the Utilo team.
+              </p>
+            </div>
+            <div
+              id="blog-grid"
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            ></div>
+          </div>
+
+          <!-- Blog Post View -->
+          <div id="blog-post-view" class="view w-full hidden">
+            <article
+              class="bg-white rounded-[2rem] shadow-sm border border-slate-200/60 overflow-hidden"
+            >
+              <div
+                id="blog-post-content"
+                class="p-6 sm:p-12 max-w-3xl mx-auto"
+              ></div>
+            </article>
+          </div>
+
+          <!-- Admin View -->
+          <div id="admin-view" class="view w-full hidden">
+            <div
+              class="bg-white rounded-[2rem] shadow-sm border border-slate-200/60 overflow-hidden p-6 sm:p-12 max-w-4xl mx-auto"
+            >
+              <div id="admin-login" class="max-w-sm mx-auto text-center py-12">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">
+                  Utilo Blog Admin
+                </h2>
+                <input
+                  type="password"
+                  id="admin-pass"
+                  placeholder="Password"
+                  class="w-full bg-slate-50 border border-slate-200 py-3 px-4 rounded-xl mb-4 outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20"
+                />
+                <button
+                  onclick="loginAdmin()"
+                  class="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition-colors"
+                >
+                  Login
+                </button>
+              </div>
+              <div id="admin-dashboard" class="hidden">
+                <h2
+                  class="text-2xl font-bold text-slate-900 mb-8 border-b pb-4"
+                >
+                  Create New Blog Post
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Title</label
+                    >
+                    <input
+                      type="text"
+                      id="admin-title"
+                      onkeyup="updateSlug()"
+                      class="w-full bg-slate-50 border border-slate-200 py-2.5 px-4 rounded-xl outline-none focus:border-teal-400"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Slug</label
+                    >
+                    <input
+                      type="text"
+                      id="admin-slug"
+                      class="w-full bg-slate-50 border border-slate-200 py-2.5 px-4 rounded-xl outline-none focus:border-teal-400"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Image URL</label
+                    >
+                    <input
+                      type="text"
+                      id="admin-img"
+                      class="w-full bg-slate-50 border border-slate-200 py-2.5 px-4 rounded-xl outline-none focus:border-teal-400"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Author</label
+                    >
+                    <input
+                      type="text"
+                      id="admin-author"
+                      value="Utilo Team"
+                      class="w-full bg-slate-50 border border-slate-200 py-2.5 px-4 rounded-xl outline-none focus:border-teal-400"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Publish Date</label
+                    >
+                    <input
+                      type="date"
+                      id="admin-date"
+                      class="w-full bg-slate-50 border border-slate-200 py-2.5 px-4 rounded-xl outline-none focus:border-teal-400"
+                    />
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Short Excerpt</label
+                    >
+                    <textarea
+                      id="admin-excerpt"
+                      rows="2"
+                      class="w-full bg-slate-50 border border-slate-200 py-2.5 px-4 rounded-xl outline-none focus:border-teal-400 resize-y"
+                    ></textarea>
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Full Content (Markdown supported via basic HTML tags or
+                      plain text)</label
+                    >
+                    <textarea
+                      id="admin-content"
+                      rows="10"
+                      class="w-full font-mono text-sm bg-slate-50 border border-slate-200 py-3 px-4 rounded-xl outline-none focus:border-teal-400 resize-y"
+                    ></textarea>
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="block text-sm font-bold text-slate-700 mb-2"
+                      >Tags (comma separated)</label
+                    >
+                    <input
+                      type="text"
+                      id="admin-tags"
+                      placeholder="e.g. Tools, Productivity, Math"
+                      class="w-full bg-slate-50 border border-slate-200 py-2.5 px-4 rounded-xl outline-none focus:border-teal-400"
+                    />
+                  </div>
+                </div>
+                <button
+                  onclick="generateBlogHTML()"
+                  class="w-full bg-[#14b8a6] hover:bg-teal-600 text-white font-bold py-4 rounded-xl shadow-md transition-all active:scale-95 text-lg mb-8"
+                >
+                  Generate HTML Code
+                </button>
+                <div id="admin-output-section" class="hidden">
+                  <h3 class="text-lg font-bold text-slate-900 mb-2">
+                    Generated Output (Copy & Save to index.html):
+                  </h3>
+                  <textarea
+                    id="admin-output"
+                    rows="15"
+                    class="w-full font-mono text-xs bg-slate-900 text-teal-400 p-4 rounded-xl outline-none"
+                    readonly
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
 
     <footer class="bg-white border-t border-slate-200 mt-auto">
-      <div
-        class="max-w-6xl mx-auto px-4 py-8 flex flex-col items-center justify-center"
-      >
-        <div class="flex items-center gap-3">
-          <div
-            class="flex items-center justify-center w-8 h-8 bg-[#14b8a6] rounded shadow-sm text-white"
-          >
-            <span class="text-xl font-bold font-sans tracking-tighter">U</span>
+      <div class="max-w-6xl mx-auto px-4 py-12">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 border-b border-slate-100 pb-8"
+        >
+          <!-- Column 1 -->
+          <div>
+            <a
+              href="#"
+              onclick="showHome(event)"
+              class="text-2xl font-extrabold text-slate-900 flex items-center gap-2 mb-4 group tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+            >
+              <div
+                class="flex items-center justify-center w-8 h-8 bg-[#14b8a6] rounded-lg shadow-sm text-white"
+              >
+                <span class="text-xl font-bold font-sans tracking-tighter"
+                  >U</span
+                >
+              </div>
+              Utilo
+            </a>
+            <p class="text-slate-500 font-medium leading-relaxed">
+              Your go-to collection of premium, fast, and secure client-side
+              tools.<br />
+              Built for privacy and speed.
+            </p>
           </div>
-          <p class="text-sm font-bold text-slate-500">
-            © 2026 Utilo. All rights reserved.
-          </p>
+          <!-- Column 2 -->
+          <div>
+            <h4 class="text-lg font-bold text-slate-900 mb-4">Quick Links</h4>
+            <ul class="space-y-3 text-slate-500 font-medium">
+              <li>
+                <a
+                  href="#"
+                  onclick="showHome(event)"
+                  class="hover:text-teal-600 transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  onclick="showAbout(event)"
+                  class="hover:text-teal-600 transition-colors"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#blog"
+                  onclick="showBlogList(event)"
+                  class="hover:text-teal-600 transition-colors"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Column 3 -->
+          <div>
+            <h4 class="text-lg font-bold text-slate-900 mb-4">Top Tools</h4>
+            <ul class="space-y-3 text-slate-500 font-medium">
+              <li>
+                <a
+                  href="#scientific-calculator"
+                  onclick="showTool('scientific-calculator')"
+                  class="hover:text-teal-600 transition-colors"
+                  >Scientific Calculator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#percentage-calculator"
+                  onclick="showTool('percentage-calculator')"
+                  class="hover:text-teal-600 transition-colors"
+                  >Percentage Calculator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#world-clock"
+                  onclick="showTool('world-clock')"
+                  class="hover:text-teal-600 transition-colors"
+                  >World Clock</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-center justify-center text-slate-400 font-medium text-sm"
+        >
+          <span>© 2026 Utilo. All rights reserved.</span>
         </div>
       </div>
     </footer>
@@ -1584,6 +1872,45 @@
         },
       ];
 
+      const blogs = [
+        {
+          title: "10 Most Used Online Utilities in 2026",
+          slug: "most-used-online-utilities-2026",
+          img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          date: "2026-06-01",
+          excerpt:
+            "Discover the top digital tools reshaping productivity and everyday problem solving this year.",
+          tags: ["Tools", "Productivity"],
+          content:
+            "<h3>The Rise of Web Utilities</h3><p>In 2026, the demand for fast, client-side tools has skyrocketed. Let's explore the top tools ranging from advanced calculators to timezone converters...</p><p>1. <strong>Timezone Clocks</strong>: Remote work requires exact timekeeping.</p><p>2. <strong>Financial Calculators</strong>: With changing rates, EMI calculators are essential.</p>",
+        },
+        {
+          title: "How to effectively manage multiple timezones",
+          slug: "manage-multiple-timezones",
+          img: "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          date: "2026-05-15",
+          excerpt:
+            "A comprehensive guide on scheduling meetings and maintaining a proper work-life balance in a global team.",
+          tags: ["Remote Work", "Time"],
+          content:
+            "<h3>Global Timing is Hard</h3><p>Working in a distributed team can be challenging when your colleagues are 8 hours ahead. Use standard UTC references and reliable timezone converters like Utilo's World Clock.</p>",
+        },
+      ];
+
+      function hideAllViews() {
+        document.getElementById("home-view").classList.remove("active");
+        document.getElementById("tool-view").classList.remove("active");
+        document.getElementById("blog-list-view").classList.remove("active");
+        document.getElementById("blog-post-view").classList.remove("active");
+        document.getElementById("admin-view").classList.remove("active");
+        if (document.getElementById("about-view"))
+          document.getElementById("about-view").classList.remove("active");
+      }
+
+      function updateBottomNav(activeId) {
+        // Navigation removed
+      }
+
       // Core Navigation
       function showHome(e) {
         if (e) e.preventDefault();
@@ -1592,19 +1919,247 @@
         document.getElementById("meta-desc").content =
           "Fast, Accurate & Easy to Use Online Tools for your daily needs.";
 
+        hideAllViews();
         document.getElementById("home-view").classList.add("active");
-        document.getElementById("tool-view").classList.remove("active");
         document.getElementById("back-btn").classList.add("hidden");
 
         const sw = document.getElementById("search-wrapper");
-        document.getElementById("global-search").value = "";
-        document
-          .getElementById("search-suggestions-dropdown")
-          .classList.add("hidden");
+        if (sw) {
+          document.getElementById("global-search").value = "";
+          document
+            .getElementById("search-suggestions-dropdown")
+            .classList.add("hidden");
+        }
 
         renderGrid(tools);
         updateSidebarActive("");
+        updateBottomNav("nav-btn-home");
         window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showAbout(e) {
+        if (e) e.preventDefault();
+        window.history.pushState(null, null, "#about");
+        document.title = "About | Utilo";
+        document.getElementById("meta-desc").content =
+          "Fast, Accurate & Easy to Use Online Tools for your daily needs.";
+
+        hideAllViews();
+        document.getElementById("about-view").classList.add("active");
+        document.getElementById("back-btn").classList.add("hidden");
+        updateBottomNav("nav-btn-about");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showBlogList(e) {
+        if (e) e.preventDefault();
+        window.history.pushState(null, null, "#blog");
+        document.title = "Blog - Utilo";
+        document.getElementById("meta-desc").content =
+          "Tips, guides, and updates from the Utilo team.";
+
+        hideAllViews();
+        document.getElementById("blog-list-view").classList.add("active");
+        document.getElementById("back-btn").classList.remove("hidden");
+
+        renderBlogGrid();
+        updateBottomNav("nav-btn-blog");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function renderBlogGrid() {
+        const grid = document.getElementById("blog-grid");
+        if (blogs.length === 0) {
+          grid.innerHTML =
+            '<p class="col-span-full text-slate-500 py-12">No blog posts yet.</p>';
+          return;
+        }
+        grid.innerHTML = blogs
+          .map(
+            (b) => `
+          <a href="#blog/${b.slug}" onclick="showBlogPost(event, '${b.slug}')" class="group bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden hover:shadow-xl hover:border-teal-200 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div class="h-48 overflow-hidden bg-slate-100">
+              <img src="${b.img}" alt="${b.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex gap-2 mb-3 flex-wrap">
+                ${b.tags.map((t) => `<span class="bg-teal-50 text-teal-700 text-xs font-bold px-2.5 py-1 rounded-md">${t}</span>`).join("")}
+              </div>
+              <h2 class="text-xl font-bold text-slate-900 leading-tight mb-3 group-hover:text-teal-600 transition-colors">${b.title}</h2>
+              <p class="text-sm font-medium text-slate-500 mb-6 flex-1 line-clamp-3">${b.excerpt}</p>
+              <div class="text-[13px] font-bold text-slate-400 mt-auto">
+                ${new Date(b.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} • 3 min read
+              </div>
+            </div>
+          </a>
+        `,
+          )
+          .join("");
+      }
+
+      function showBlogPost(e, slug) {
+        if (e) e.preventDefault();
+        const post = blogs.find((b) => b.slug === slug);
+        if (!post) {
+          showBlogList(null);
+          return;
+        }
+        window.history.pushState(null, null, "#blog/" + slug);
+        document.title = post.title + " | Utilo Blog";
+        document.getElementById("meta-desc").content = post.excerpt;
+
+        hideAllViews();
+        document.getElementById("blog-post-view").classList.add("active");
+        document.getElementById("back-btn").classList.remove("hidden");
+        updateBottomNav("nav-btn-blog");
+
+        const contentDiv = document.getElementById("blog-post-content");
+        contentDiv.innerHTML = `
+          <a href="#blog" onclick="showBlogList(event)" class="inline-flex items-center gap-2 text-teal-600 font-bold text-sm mb-8 hover:text-teal-700 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Blog
+          </a>
+          <div class="flex gap-2 mb-4">
+            ${post.tags.map((t) => `<span class="text-teal-600 text-sm font-bold tracking-tight uppercase">${t}</span>`).join('<span class="text-slate-300">•</span>')}
+          </div>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+            ${post.title}
+          </h1>
+          <div class="flex items-center gap-4 text-sm font-bold text-slate-500 mb-10 pb-10 border-b border-slate-100">
+            <span>By ${post.author || "Utilo Team"}</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+            <span>${new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+          </div>
+          <div class="aspect-video w-full rounded-2xl overflow-hidden mb-12 bg-slate-100 shadow-sm">
+             <img src="${post.img}" alt="${post.title}" class="w-full h-full object-cover">
+          </div>
+          <div class="prose prose-slate prose-teal prose-lg max-w-none prose-headings:font-extrabold prose-a:font-bold prose-img:rounded-xl">
+            ${post.content}
+          </div>
+          <div class="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+             <p class="font-bold text-slate-900">Share this article</p>
+             <div class="flex gap-3">
+               <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!')" class="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-teal-50 hover:text-teal-600 transition-colors cursor-pointer" title="Copy Link"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg></button>
+               <button onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank')" class="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-[#1DA1F2]/10 hover:text-[#1DA1F2] transition-colors cursor-pointer" title="Share on Twitter"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+               <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')" class="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-[#1877F2]/10 hover:text-[#1877F2] transition-colors cursor-pointer" title="Share on Facebook"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z" /></svg></button>
+               <button onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title + ' ' + window.location.href), '_blank')" class="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-[#25D366]/10 hover:text-[#25D366] transition-colors cursor-pointer" title="Share on WhatsApp"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2A10 10 0 0 0 2 12c0 1.77.46 3.43 1.27 4.9L2 22l5.24-1.2A9.97 9.97 0 0 0 11.99 22a10 10 0 0 0 10-10 10 10 0 0 0-10-10zM17.47 16.3c-.25.7-1.46 1.34-2.02 1.4-2.02.24-4.83-1.63-6.44-4-1.63-2.4-1.58-4.23.1-6.1.42-.47 1-.6 1.4-.6.28 0 .54 0 .76.01.27.02.63-.1.97.74.37.93 1.25 3.03 1.36 3.25.1.22.18.49.03.78-.15.29-.23.47-.46.72-.23.25-.49.56-.7.76-.23.24-.48.49-.21.95.27.46 1.2 1.95 2.55 3.16 1.74 1.55 3.16 2.03 3.63 2.25.46.22.73.19 1-.12.28-.32 1.2-1.4 1.51-1.88.32-.47.63-.4.1-.59z"/></svg></button>
+             </div>
+          </div>
+        `;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showAdmin(e) {
+        if (e) e.preventDefault();
+        window.history.pushState(null, null, "#admin");
+        document.title = "Admin - Utilo";
+
+        hideAllViews();
+        document.getElementById("admin-view").classList.add("active");
+        document.getElementById("back-btn").classList.add("hidden");
+        document.getElementById("admin-date").valueAsDate = new Date();
+        updateBottomNav(""); // No active tab highlighting when in admin mode
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function loginAdmin() {
+        if (document.getElementById("admin-pass").value === "admin123") {
+          document.getElementById("admin-login").classList.add("hidden");
+          document.getElementById("admin-dashboard").classList.remove("hidden");
+        } else {
+          alert("Invalid Password");
+        }
+      }
+
+      function updateSlug() {
+        const title = document.getElementById("admin-title").value;
+        const slug = title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)+/g, "");
+        document.getElementById("admin-slug").value = slug;
+      }
+
+      function generateBlogHTML() {
+        const bTitle = document.getElementById("admin-title").value.trim();
+        const bSlug = document.getElementById("admin-slug").value.trim();
+        const bImg = document.getElementById("admin-img").value.trim();
+        const bAuthor = document.getElementById("admin-author").value.trim();
+        const bDate = document.getElementById("admin-date").value;
+        const bExcerpt = document.getElementById("admin-excerpt").value.trim();
+        let bContent = document.getElementById("admin-content").value.trim();
+
+        // Improved Markdown to HTML conversion
+        bContent = bContent
+          .replace(/^### (.*$)/gim, "<h3>$1</h3>")
+          .replace(/^## (.*$)/gim, "<h2>$1</h2>")
+          .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+          .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
+          .replace(/\*(.*?)\*/gim, "<em>$1</em>")
+          .replace(
+            /\[([^\]]+)\]\(([^)]+)\)/gim,
+            '<a href="$2" target="_blank" class="text-teal-600 hover:underline">$1</a>',
+          )
+          .replace(/^- (.*$)/gim, '<li class="ml-4 list-disc">$1</li>')
+          .split("\n\n")
+          .map((p) => {
+            if (!p.startsWith("<h") && !p.startsWith("<li"))
+              return `<p>${p.replace(/\n/g, "<br>")}</p>`;
+            if (p.includes("<li")) return `<ul class="mb-4">${p}</ul>`;
+            return p;
+          })
+          .join("");
+
+        const bTagsStr = document.getElementById("admin-tags").value;
+        const bTags = bTagsStr
+          .split(",")
+          .map((s) => s.trim())
+          .filter((s) => s.length > 0);
+
+        if (!bTitle || !bSlug) return alert("Title and Slug required");
+
+        const newBlogObj = {
+          title: bTitle,
+          slug: bSlug,
+          author: bAuthor || "Utilo Team",
+          img:
+            bImg ||
+            "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?width=800",
+          date: bDate || new Date().toISOString().split("T")[0],
+          excerpt: bExcerpt,
+          tags: bTags.length > 0 ? bTags : ["General"],
+          content: bContent,
+        };
+
+        const newBlogJSON = JSON.stringify(newBlogObj, null, 10).replace(
+          /\}$/,
+          "        }",
+        );
+
+        // Let's modify the outerHTML directly
+        // We will find the "const blogs = [" and inject it.
+        const pageHTML = document.documentElement.outerHTML;
+        const arrayStartIndicator = "const blogs = [";
+        const injectPosition =
+          pageHTML.indexOf(arrayStartIndicator) + arrayStartIndicator.length;
+
+        if (injectPosition > arrayStartIndicator.length) {
+          let finalHTML =
+            '<!DOCTYPE html>\n<html lang="en">\n' +
+            pageHTML.substring(0, injectPosition) +
+            "\n        " +
+            newBlogJSON +
+            "," +
+            pageHTML.substring(injectPosition) +
+            "\n</html>";
+
+          document.getElementById("admin-output").value = finalHTML;
+          document
+            .getElementById("admin-output-section")
+            .classList.remove("hidden");
+        } else {
+          alert("Could not find blog array in DOM.");
+        }
       }
 
       function renderGrid(list) {
@@ -1675,7 +2230,7 @@
         document.title = toolMeta.name + " | Premium Free Tool | Utilo";
         document.getElementById("meta-desc").content = toolMeta.desc;
 
-        document.getElementById("home-view").classList.remove("active");
+        hideAllViews();
         document.getElementById("tool-view").classList.add("active");
         document.getElementById("back-btn").classList.remove("hidden");
 
@@ -1692,6 +2247,7 @@
         if (target) target.classList.add("active");
 
         updateSidebarActive(id);
+        updateBottomNav("nav-btn-tools");
 
         const seoDiv = document.getElementById("seo-content");
         seoDiv.classList.remove("hidden");
@@ -2543,12 +3099,22 @@
 
         window.addEventListener("popstate", (e) => {
           const h = window.location.hash.replace("#", "");
-          if (h) showTool(h);
+          if (h === "blog") showBlogList(null);
+          else if (h === "about") showAbout(null);
+          else if (h === "admin") showAdmin(null);
+          else if (h.startsWith("blog/"))
+            showBlogPost(null, h.replace("blog/", ""));
+          else if (h) showTool(h);
           else showHome(null);
         });
 
         const initHash = window.location.hash.replace("#", "");
-        if (initHash) showTool(initHash);
+        if (initHash === "blog") showBlogList(null);
+        else if (initHash === "about") showAbout(null);
+        else if (initHash === "admin") showAdmin(null);
+        else if (initHash.startsWith("blog/"))
+          showBlogPost(null, initHash.replace("blog/", ""));
+        else if (initHash) showTool(initHash);
         else showHome(null);
 
         document.addEventListener("click", (e) => {

@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation 
 import { Settings, Search, ChevronLeft } from 'lucide-react';
 
 import Home from './pages/Home';
+import BlogList from './pages/BlogList';
+import BlogPost from './pages/BlogPost';
 import WorldClock from './components/WorldClock';
 import CurrencyConverter from './components/CurrencyConverter';
 import AgeCalculator from './components/AgeCalculator';
@@ -191,9 +193,41 @@ function ToolLayout({ children, title }: { children: React.ReactNode, title: str
 
 function Footer() {
   return (
-    <footer className="bg-white border-t border-slate-200 py-12 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm">
-         <p>© 2026 Utilo. All Rights Reserved.</p>
+    <footer className="bg-white border-t border-slate-200 mt-auto">
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 border-b border-slate-100 pb-8">
+          <div>
+            <Link to="/" className="text-2xl font-extrabold text-slate-900 flex items-center gap-2 mb-4 group tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
+              <div className="flex items-center justify-center w-8 h-8 bg-[#14b8a6] rounded-lg shadow-sm text-white">
+                <span className="text-xl font-bold font-sans tracking-tighter">U</span>
+              </div>
+              Utilo
+            </Link>
+            <p className="text-slate-500 font-medium leading-relaxed">
+              Your go-to collection of premium, fast, and secure client-side tools.<br />
+              Built for privacy and speed.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-lg font-bold text-slate-900 mb-4">Quick Links</h4>
+            <ul className="space-y-3 text-slate-500 font-medium">
+              <li><Link to="/" className="hover:text-teal-600 transition-colors">Home</Link></li>
+              <li><Link to="/blog" className="hover:text-teal-600 transition-colors">Blog</Link></li>
+              <li><a href="/admin" className="hover:text-teal-600 transition-colors">Admin Dashboard</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-bold text-slate-900 mb-4">Top Tools</h4>
+            <ul className="space-y-3 text-slate-500 font-medium">
+              <li><Link to="/scientific-calculator" className="hover:text-teal-600 transition-colors">Scientific Calculator</Link></li>
+              <li><Link to="/percentage-calculator" className="hover:text-teal-600 transition-colors">Percentage Calculator</Link></li>
+              <li><Link to="/world-clock" className="hover:text-teal-600 transition-colors">World Clock</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-center text-slate-400 font-medium text-sm">
+          <span>© 2026 Utilo. All rights reserved.</span>
+        </div>
       </div>
     </footer>
   );
@@ -207,6 +241,8 @@ export default function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/world-clock" element={<ToolLayout title="World Clock"><WorldClock /></ToolLayout>} />
             <Route path="/currency-converter" element={<ToolLayout title="Currency Converter"><CurrencyConverter /></ToolLayout>} />
             <Route path="/age-calculator" element={<ToolLayout title="Age Calculator"><AgeCalculator /></ToolLayout>} />

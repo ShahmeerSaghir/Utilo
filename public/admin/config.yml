@@ -1,22 +1,21 @@
 backend:
   name: git-gateway
-  branch: main
-
-media_folder: "public/images"
-public_folder: "/images"
+  branch: main 
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "blog"
-    label: "Blog Posts"
-    folder: "src/content/blog" 
+    label: "Blog"
+    folder: "public/content/blog"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Slug", name: "slug", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Author", name: "author", widget: "string", default: "Shahmeer"}
-      - {label: "Featured Image", name: "image", widget: "image"}
-      - {label: "Excerpt", name: "excerpt", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list", default: ["tools", "calculator"]}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Utilo Team" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Featured Image", name: "img", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
